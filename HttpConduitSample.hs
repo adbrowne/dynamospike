@@ -44,8 +44,8 @@ getSignature time headers body =
     }
     where 
         creds = Credentials { 
-                    accessKeyID = "AKIAJXELXSQICXRN3VBQ", 
-                    secretAccessKey = "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" 
+                    accessKeyID = "AKIAJXELXSQICXRN3VBA", 
+                    secretAccessKey = "ignored" 
                 }
 
 data AttributeDef =
