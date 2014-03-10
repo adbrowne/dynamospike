@@ -4,6 +4,8 @@ import Data.Conduit
 import qualified Data.Conduit.List as CL
 
 import AesonConfig
+import Control.Applicative
+import Control.Monad
 
 import Data.Aeson
 import Data.Aeson.TH
@@ -55,6 +57,40 @@ data AttributeDef =
 
 $(deriveJSON dynamoAesonOptions ''AttributeDef)
 
+data KeySchema = 
+    KeySchema {
+        keySchemaAttributeName :: !Text,
+        keyType :: !Text
+    }
+        deriving (Show)
+
+instance ToJSON KeySchema where 
+    toJSON (KeySchema keySchemaAttributeName keyType) = 
+        object [
+            "attributeName" .= keySchemaAttributeName, 
+            "keyType" .= keyType
+        ]
+
+instance FromJSON KeySchema where
+    parseJSON (Object v) = KeySchema <$>
+                           v .: "attributeName" <*>
+                           v .: "keyType"
+    parseJSON _          = mzero
+
+data Projection = Projection {
+    projectionType :: !Text
+} deriving (Show)
+
+$(deriveJSON dynamoAesonOptions ''Projection)
+
+data LocalSecondaryIndex = LocalSecondaryIndex {
+    indexName :: !Text,
+    localSecondaryIndexKeySchema :: [KeySchema],
+    projection :: Projection
+} deriving (Show)
+
+$(deriveJSON (dynamoAesonOptionsDropPrefix "localSecondaryIndex") ''LocalSecondaryIndex)
+
 data ProvisionedThroughput =
     ProvisionedThroughput {
         readCapacityUnits :: Int,
@@ -67,8 +103,10 @@ $(deriveJSON dynamoAesonOptions ''ProvisionedThroughput)
 data CreateReq =
     CreateReq { 
         attributeDefinitions :: [AttributeDef],
+        keySchema :: [KeySchema],
         provisionedThroughput :: ProvisionedThroughput,
-        tableName :: String
+        tableName :: String,
+        localSecondaryIndexes :: [LocalSecondaryIndex]
     }
         deriving (Show)
 
@@ -110,6 +148,20 @@ main = do
                         AttributeDef { attributeName = "LastPostDateTime", attributeType = "S" } 
                     ],
                     tableName = "Thread2",
+                    keySchema = [
+                        KeySchema { keySchemaAttributeName = "ForumName", keyType = "HASH" },
+                        KeySchema { keySchemaAttributeName = "Subject", keyType = "RANGE" }
+                    ],
+                    localSecondaryIndexes = [
+                        LocalSecondaryIndex { 
+                            indexName = "LastPostIndex",
+                            localSecondaryIndexKeySchema = [
+                                KeySchema { keySchemaAttributeName = "ForumName", keyType = "HASH" },
+                                KeySchema { keySchemaAttributeName = "Subject", keyType = "RANGE" }
+                            ],
+                            projection = Projection { projectionType = "KEYS_ONLY" }
+                        }
+                    ],
                     provisionedThroughput = ProvisionedThroughput { 
                         readCapacityUnits = 5, 
                         writeCapacityUnits = 5
