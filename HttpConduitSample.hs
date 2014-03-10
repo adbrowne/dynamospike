@@ -63,19 +63,7 @@ data KeySchema =
         keyType :: !Text
     }
         deriving (Show)
-
-instance ToJSON KeySchema where 
-    toJSON (KeySchema keySchemaAttributeName keyType) = 
-        object [
-            "attributeName" .= keySchemaAttributeName, 
-            "keyType" .= keyType
-        ]
-
-instance FromJSON KeySchema where
-    parseJSON (Object v) = KeySchema <$>
-                           v .: "attributeName" <*>
-                           v .: "keyType"
-    parseJSON _          = mzero
+$(deriveJSON (dynamoAesonOptionsDropPrefix "keySchema") ''KeySchema)
 
 data Projection = Projection {
     projectionType :: !Text
@@ -140,7 +128,7 @@ dynamoReq operation sink body = do
 main :: IO ()
 main = do
     let createTableString = "{ \"AttributeDefinitions\": [ { \"AttributeName\": \"ForumName\", \"AttributeType\": \"S\" }, { \"AttributeName\": \"Subject\", \"AttributeType\": \"S\" }, { \"AttributeName\": \"LastPostDateTime\", \"AttributeType\": \"S\" } ], \"TableName\": \"Thread2\", \"KeySchema\": [ { \"AttributeName\": \"ForumName\", \"KeyType\": \"HASH\" }, { \"AttributeName\": \"Subject\", \"KeyType\": \"RANGE\" } ], \"LocalSecondaryIndexes\": [ { \"IndexName\": \"LastPostIndex\", \"KeySchema\": [ { \"AttributeName\": \"ForumName\", \"KeyType\": \"HASH\" }, { \"AttributeName\": \"LastPostDateTime\", \"KeyType\": \"RANGE\" } ], \"Projection\": { \"ProjectionType\": \"KEYS_ONLY\" } } ], \"ProvisionedThroughput\": { \"ReadCapacityUnits\": 5, \"WriteCapacityUnits\": 5 } }"
-    putStrLn $ show createTableString 
+    putStrLn $ createTableString 
     let myObj = CreateReq { 
                     attributeDefinitions = [ 
                         AttributeDef { attributeName = "ForumName", attributeType = "S" },
@@ -157,7 +145,7 @@ main = do
                             indexName = "LastPostIndex",
                             localSecondaryIndexKeySchema = [
                                 KeySchema { keySchemaAttributeName = "ForumName", keyType = "HASH" },
-                                KeySchema { keySchemaAttributeName = "Subject", keyType = "RANGE" }
+                                KeySchema { keySchemaAttributeName = "LastPostDateTime", keyType = "RANGE" }
                             ],
                             projection = Projection { projectionType = "KEYS_ONLY" }
                         }
