@@ -121,14 +121,14 @@ dynamoReq operation sink body = do
                     ("X-Amz-Date", "20130928T135345Z"),
                     ("User-Agent","aws-cli/1.1.0 Python/2.7.3 Linux/3.8.0-29-generic")
                 ]
-    let sig = getSignature time headers body
+    let sig = getSignature time headers (BL.toStrict body)
     let authHeader = s4Authz sig
     let withAuthHeader = ("Authorization", authHeader) : headers
     request <- parseUrl "http://localhost:8000/"
     let proxy = Nothing -- Just Proxy { proxyHost = "localhost", proxyPort = 8888 }
     let anotherReq = request { 
                         requestHeaders = withAuthHeader,
-                        requestBody = RequestBodyBS body,
+                        requestBody = RequestBodyBS (BL.toStrict body),
                         method = "POST",
                         proxy = proxy
     }
@@ -173,6 +173,6 @@ main = do
     BCL.putStrLn myString 
 
     putStrLn ""
-    dynamoReq "CreateTable" printer createTableString 
+    dynamoReq "CreateTable" printer myString 
     putStrLn ""
     dynamoReq "ListTables" printer "{}"
