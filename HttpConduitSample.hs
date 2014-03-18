@@ -100,6 +100,12 @@ data CreateReq =
 
 $(deriveJSON dynamoAesonOptions ''CreateReq)
 
+data PutReq = 
+  PutReq {
+    putReqTableName :: !Text,
+    item :: !Text
+  }
+
 dynamoReq operation sink body = do
     time <- getCurrentTime
     let target = "DynamoDB_20120810." ++ operation
@@ -164,3 +170,5 @@ main = do
     dynamoReq "CreateTable" printer myString 
     putStrLn ""
     dynamoReq "ListTables" printer "{}"
+    dynamoReq "PutItem" printer "{\"TableName\":\"Thread2\", \"Item\": {\"ForumName\": {\"S\": \"Andrew's Forum\"}, \"Subject\": {\"S\": \"Andrew's Subject\"}}}"
+    dynamoReq "GetItem" printer "{\"TableName\":\"Thread2\", \"Key\": {\"ForumName\": {\"S\": \"Andrew's Forum\"}, \"Subject\": {\"S\": \"Andrew's Subject\"}}}"
