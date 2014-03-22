@@ -100,6 +100,14 @@ data CreateReq =
 
 $(deriveJSON dynamoAesonOptions ''CreateReq)
 
+data ListTables = 
+  ListTables {
+    exclusiveStartTableName :: !(Maybe Text),
+    limit :: !(Maybe Int)
+  } deriving (Show)
+
+$(deriveJSON dynamoAesonOptions ''ListTables)
+
 data PutReq = 
   PutReq {
     putReqTableName :: !Text,
@@ -167,6 +175,7 @@ main = do
     putStrLn ""
     dynamoReq "CreateTable" printer myString 
     putStrLn ""
-    dynamoReq "ListTables" printer "{}"
+    let listTableReq = ListTables { exclusiveStartTableName = Nothing, limit = Nothing }
+    dynamoReq "ListTables" printer (encode listTableReq)
     dynamoReq "PutItem" printer "{\"TableName\":\"Thread2\", \"Item\": {\"ForumName\": {\"S\": \"Andrew's Forum\"}, \"Subject\": {\"S\": \"Andrew's Subject\"}}}"
     dynamoReq "GetItem" printer "{\"TableName\":\"Thread2\", \"Key\": {\"ForumName\": {\"S\": \"Andrew's Forum\"}, \"Subject\": {\"S\": \"Andrew's Subject\"}}}"
