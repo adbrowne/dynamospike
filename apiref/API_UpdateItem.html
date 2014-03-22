@@ -1,0 +1,511 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta http-equiv="X-UA-Compatible" content="IE=8"><title>UpdateItem - Amazon DynamoDB</title><link rel="home" href="#top" title="Amazon DynamoDB"><link rel="up" href="API_Operations.html" title="Actions"><link rel="prev" href="API_Scan.html" title="Scan"><link rel="next" href="API_UpdateTable.html" title="UpdateTable"><meta http-equiv="X-UA-Compatible" content="IE=8"><meta name="description" content="Edits an existing item's attributes, or inserts a new item if it does not already exist. You can put, delete, or add attribute values. You can also perform a conditional update (insert a new attribute name-value pair if it doesn't exist, or replace an existing name-value pair if it has certain expected attribute values)."><meta name="keywords" content="API,UpdateItem,requests,AttributeUpdates.entry.N.value.Action,parameters,value.Action,"><link rel="icon" type="image/ico" href="//d36cz9buwru1tt.cloudfront.net/favicon.ico"><link rel="shortcut icon" type="image/ico" href="//d36cz9buwru1tt.cloudfront.net/favicon.ico"><link rel="canonical" href="http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_UpdateItem.html"><link rel="stylesheet" type="text/css" href="aws-docs2.css"><script type="text/javascript" src="https://d36cz9buwru1tt.cloudfront.net/amznUrchin.js"></script><script src="all_1.js" type="text/javascript"></script><script src="awstoc.js" type="text/javascript"></script></head><body id="top" class="yui-skin-sam noJS"><div id="divHeader"><form method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html"><div id="ad"><a id="adl" target="_top" href="http://aws.amazon.com/documentation"><img id="adi" alt="Amazon Web Services" src="images/documentation_logo200x29.png"></a></div><div id="txt"><div id="srv">Amazon DynamoDB</div><div id="gd">API Reference (API Version 2012-08-10)</div></div><div id="sfrm"><span id="lbl"><label>Search: </label></span><select id="sel" name="searchPath"><option value="all">Entire Site</option><option value="AWSMarketplace">AMIs from AWS Marketplace</option><option value="amis">AMIs from All Sources</option><option value="articles">Articles &amp; Tutorials</option><option value="products_and_info">AWS Product Information</option><option value="case_studies">Case Studies</option><option value="customerapps">Customer Apps</option><option value="documentation">Documentation</option><option value="documentation-product">Documentation - This Product</option><option value="documentation-guide" selected>Documentation - This Guide</option><option value="datasets">Public Data Sets</option><option value="releasenotes">Release Notes</option><option value="solution_providers">Partners</option><option value="code">Sample Code &amp; Libraries</option></select><input id="sq" name="searchQuery" type="text"><input id="sb" src="images/search-button.png" alt="Go" type="image"></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon DynamoDB"><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="API Reference"><input type="hidden" name="doc_locale" value="en_us"></form></div><script type="text/javascript"><!--
+						var thispage = "API_UpdateItem.html";
+						var tocroot = location.protocol + '//' + location.hostname + location.pathname;
+						--></script><div id="divLeft"><div id="divTOC"><ul class="awstoc"><li class="awstoc leaf"><a class="awstoc" href="Welcome.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-Welcome.html');">Welcome</a></li><li class="awstoc opened"><a class="awstoc" href="API_Operations.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Operations.html');">Actions</a><ul class="awstoc"><li class="awstoc leaf"><a class="awstoc" href="API_BatchGetItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchGetItem.html');">BatchGetItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_BatchWriteItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchWriteItem.html');">BatchWriteItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_CreateTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_CreateTable.html');">CreateTable</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteItem.html');">DeleteItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteTable.html');">DeleteTable</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DescribeTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DescribeTable.html');">DescribeTable</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GetItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GetItem.html');">GetItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ListTables.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ListTables.html');">ListTables</a></li><li class="awstoc leaf"><a class="awstoc" href="API_PutItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_PutItem.html');">PutItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Query.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Query.html');">Query</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Scan.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Scan.html');">Scan</a></li><li class="awstoc leaf"><a class="awstoc selected" href="API_UpdateItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateItem.html');">UpdateItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateTable.html');">UpdateTable</a></li></ul></li><li class="awstoc closed"><a class="awstoc" href="API_Types.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Types.html');">Data Types</a><ul class="awstoc"><li class="awstoc leaf"><a class="awstoc" href="API_AttributeDefinition.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_AttributeDefinition.html');">AttributeDefinition</a></li><li class="awstoc leaf"><a class="awstoc" href="API_AttributeValue.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_AttributeValue.html');">AttributeValue</a></li><li class="awstoc leaf"><a class="awstoc" href="API_AttributeValueUpdate.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_AttributeValueUpdate.html');">AttributeValueUpdate</a></li><li class="awstoc leaf"><a class="awstoc" href="API_BatchGetItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchGetItemResult.html');">BatchGetItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_BatchWriteItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchWriteItemResult.html');">BatchWriteItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Capacity.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Capacity.html');">Capacity</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Condition.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Condition.html');">Condition</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ConsumedCapacity.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ConsumedCapacity.html');">ConsumedCapacity</a></li><li class="awstoc leaf"><a class="awstoc" href="API_CreateTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_CreateTableResult.html');">CreateTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteItemResult.html');">DeleteItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteRequest.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteRequest.html');">DeleteRequest</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteTableResult.html');">DeleteTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DescribeTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DescribeTableResult.html');">DescribeTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ExpectedAttributeValue.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ExpectedAttributeValue.html');">ExpectedAttributeValue</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GetItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GetItemResult.html');">GetItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GlobalSecondaryIndex.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GlobalSecondaryIndex.html');">GlobalSecondaryIndex</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GlobalSecondaryIndexDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GlobalSecondaryIndexDescription.html');">GlobalSecondaryIndexDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GlobalSecondaryIndexUpdate.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GlobalSecondaryIndexUpdate.html');">GlobalSecondaryIndexUpdate</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ItemCollectionMetrics.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ItemCollectionMetrics.html');">ItemCollectionMetrics</a></li><li class="awstoc leaf"><a class="awstoc" href="API_KeySchemaElement.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_KeySchemaElement.html');">KeySchemaElement</a></li><li class="awstoc leaf"><a class="awstoc" href="API_KeysAndAttributes.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_KeysAndAttributes.html');">KeysAndAttributes</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ListTablesResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ListTablesResult.html');">ListTablesResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_LocalSecondaryIndex.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_LocalSecondaryIndex.html');">LocalSecondaryIndex</a></li><li class="awstoc leaf"><a class="awstoc" href="API_LocalSecondaryIndexDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_LocalSecondaryIndexDescription.html');">LocalSecondaryIndexDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Projection.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Projection.html');">Projection</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ProvisionedThroughput.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ProvisionedThroughput.html');">ProvisionedThroughput</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ProvisionedThroughputDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ProvisionedThroughputDescription.html');">ProvisionedThroughputDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_PutItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_PutItemResult.html');">PutItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_PutRequest.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_PutRequest.html');">PutRequest</a></li><li class="awstoc leaf"><a class="awstoc" href="API_QueryResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_QueryResult.html');">QueryResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ScanResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ScanResult.html');">ScanResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_TableDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_TableDescription.html');">TableDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateGlobalSecondaryIndexAction.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateGlobalSecondaryIndexAction.html');">UpdateGlobalSecondaryIndexAction</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateItemResult.html');">UpdateItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateTableResult.html');">UpdateTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_WriteRequest.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_WriteRequest.html');">WriteRequest</a></li></ul></li><li class="awstoc leaf"><a class="awstoc" href="CommonErrors.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-CommonErrors.html');">Common Errors</a></li></ul></div></div><div id="divRight"><div id="divContent"><table width="100%" summary="Navigation header" cellspacing="0" cellpadding="2" style="margin-top:12px;"><tr><td valign="top"><div class="navheader"><div class="breadcrumb"><a href="http://aws.amazon.com/documentation" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', 'http://aws.amazon.com/documentation');">AWS Documentation</a> &raquo; <a href="http://aws.amazon.com/documentation/dynamodb/" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', 'http://aws.amazon.com/documentation/dynamodb/');">Amazon DynamoDB</a> &raquo; <a href="http://docs.aws.amazon.com/amazondynamodb/latest/APIReference" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', 'http://docs.aws.amazon.com/amazondynamodb/latest/APIReference');">API Reference</a> &raquo; <a href="API_Operations.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_Operations.html');">Actions</a> &raquo; <span class="breadcrumb">UpdateItem</span></div></div></td><td width="350px" align="right" valign="top"><a class="awstoc" accesskey="p" style="margin-right:12px;" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-previous', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_Scan.html');" href="API_Scan.html">&laquo; Previous</a><a class="awstoc" accesskey="n" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-next', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_UpdateTable.html');" href="API_UpdateTable.html">Next &raquo;</a></td></tr><tr><td><a href="http://awsdocs.s3.amazonaws.com/dynamodb/latest/dynamodb-api.pdf" style="padding-right: 8px;" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-pdf-link', 'aws-docs-click', 'http://awsdocs.s3.amazonaws.com/dynamodb/latest/dynamodb-api.pdf');"><img src="images/pdf_button.png" alt="View the PDF for this guide." title="View the PDF for this guide."></a><a target="_blank" style="padding-right: 8px;" href="http://forums.aws.amazon.com/forum.jspa?forumID=131" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-forums-link', 'aws-docs-click', 'http://forums.aws.amazon.com/forum.jspa?forumID=131');"><img src="images/forum_button.png" alt="Go to the AWS Discussion Forum for this product." title="Go to the AWS Discussion Forum for this product."></a></td><td width="350px" align="right" valign="top">Did this page help you?&nbsp;&nbsp;<a class="awstoc" target="_blank" href="feedbackyes.html?topic_id=API_UpdateItem">Yes</a>&nbsp;|&nbsp;<a class="awstoc" target="_blank" href="feedbackno.html?topic_id=API_UpdateItem">No</a>&nbsp;|&nbsp;&nbsp;<a class="awstoc" target="_blank" href="https://portal.aws.amazon.com/gp/aws/html-forms-controller/documentation/aws_doc_feedback_04?service_name=DynamoDB&amp;guide_name=API%20Reference&amp;api_version=2012-08-10&amp;file_name=API_UpdateItem">Tell us about it...</a></td></tr></table><div class="section"><div class="titlepage"><div><div><h1 class="topictitle">UpdateItem</h1></div></div></div><a class="indexterm" name="d0e11055"></a><a class="indexterm" name="d0e11060"></a><a class="indexterm" name="d0e11065"></a><p> Edits an existing item's attributes, or inserts a new item if it does not already exist. You can put, delete, or add attribute values. You can
+      also perform a conditional update (insert a new attribute name-value pair if it doesn't exist,
+      or replace an existing name-value pair if it has certain expected attribute values).</p><p>In addition to updating an item, you can also return the item's attribute values in the same operation, using the <span class="emphasis"><em>ReturnValues</em></span> parameter.</p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_UpdateItem_RequestSyntax">Request Syntax</h2></div></div></div><pre class="programlisting">
+{
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-request-AttributeUpdates">AttributeUpdates</a>": 
+        {
+            "<em class="replaceable"><code>string</code></em>" :
+                {
+                    "Action": "<em class="replaceable"><code>string</code></em>",
+                    "Value": {
+                        "B": "<em class="replaceable"><code>blob</code></em>",
+                        "BS": [
+                            "<em class="replaceable"><code>blob</code></em>"
+                        ],
+                        "N": "<em class="replaceable"><code>string</code></em>",
+                        "NS": [
+                            "<em class="replaceable"><code>string</code></em>"
+                        ],
+                        "S": "<em class="replaceable"><code>string</code></em>",
+                        "SS": [
+                            "<em class="replaceable"><code>string</code></em>"
+                        ]
+                    }
+                }
+        },
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-request-Expected">Expected</a>": 
+        {
+            "<em class="replaceable"><code>string</code></em>" :
+                {
+                    "Exists": "<em class="replaceable"><code>boolean</code></em>",
+                    "Value": {
+                        "B": "<em class="replaceable"><code>blob</code></em>",
+                        "BS": [
+                            "<em class="replaceable"><code>blob</code></em>"
+                        ],
+                        "N": "<em class="replaceable"><code>string</code></em>",
+                        "NS": [
+                            "<em class="replaceable"><code>string</code></em>"
+                        ],
+                        "S": "<em class="replaceable"><code>string</code></em>",
+                        "SS": [
+                            "<em class="replaceable"><code>string</code></em>"
+                        ]
+                    }
+                }
+        },
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-request-Key">Key</a>": 
+        {
+            "<em class="replaceable"><code>string</code></em>" :
+                {
+                    "B": "<em class="replaceable"><code>blob</code></em>",
+                    "BS": [
+                        "<em class="replaceable"><code>blob</code></em>"
+                    ],
+                    "N": "<em class="replaceable"><code>string</code></em>",
+                    "NS": [
+                        "<em class="replaceable"><code>string</code></em>"
+                    ],
+                    "S": "<em class="replaceable"><code>string</code></em>",
+                    "SS": [
+                        "<em class="replaceable"><code>string</code></em>"
+                    ]
+                }
+        },
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-request-ReturnConsumedCapacity">ReturnConsumedCapacity</a>": "<em class="replaceable"><code>string</code></em>",
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-request-ReturnItemCollectionMetrics">ReturnItemCollectionMetrics</a>": "<em class="replaceable"><code>string</code></em>",
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-request-ReturnValues">ReturnValues</a>": "<em class="replaceable"><code>string</code></em>",
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-request-TableName">TableName</a>": "<em class="replaceable"><code>string</code></em>"
+}
+			</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_UpdateItem_RequestParameters">Request Parameters</h2></div></div></div><p>The request accepts the following data in JSON format.</p><div class="aws-note"><p class="aws-note">Note</p><p>In the following list, the required parameters are described first.</p></div><div class="variablelist"><dl><dt><a name="DDB-UpdateItem-request-Key"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_RequestSyntax" title="Request Syntax">Key</a></strong></span>
+         </span></dt><dd><p>The primary key that defines the item. Each element consists of an attribute name and a value for that attribute.</p><p>
+            Type:
+              String
+					to
+					<a class="xref" href="API_AttributeValue.html" title="AttributeValue">AttributeValue</a>
+						object
+					
+					map
+				</p><p>
+                        Required: Yes
+                    </p></dd><dt><a name="DDB-UpdateItem-request-TableName"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_RequestSyntax" title="Request Syntax">TableName</a></strong></span>
+         </span></dt><dd><p>The name of the table containing the item to update. </p><p>
+            Type:
+              String</p><p>
+                            Length constraints:
+                            
+                                Minimum length of
+                                3.
+                            
+                                Maximum length of
+                                255.
+                            </p><p>
+                        Required: Yes
+                    </p></dd><dt><a name="DDB-UpdateItem-request-AttributeUpdates"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_RequestSyntax" title="Request Syntax">AttributeUpdates</a></strong></span>
+         </span></dt><dd><p>The names of attributes to be modified, the action to perform on each, and the new value for
+      each. If you are updating an attribute that is an index key attribute for any indexes on that
+      table, the attribute type must match the index key type defined in the <span class="emphasis"><em>AttributesDefinition</em></span> of
+      the table description. You can use <span class="emphasis"><em>UpdateItem</em></span> to update any non-key attributes.</p><p>Attribute values cannot be null. String and binary type attributes must have lengths greater
+      than zero. Set type attributes must not be empty. Requests with empty values will be
+      rejected with a <span class="emphasis"><em>ValidationException</em></span>.</p><p>Each <span class="emphasis"><em>AttributeUpdates</em></span> element consists of an attribute name to modify, along with the
+      following:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <span class="emphasis"><em>Value</em></span> - The new value, if applicable, for this attribute.</p></li><li class="listitem"><p>
+                           <span class="emphasis"><em>Action</em></span> - Specifies how to perform the update. Valid values for <span class="emphasis"><em>Action</em></span>
+          are <code class="code">PUT</code>, <code class="code">DELETE</code>, and <code class="code">ADD</code>. The behavior depends on
+          whether the specified primary key already exists in the table.</p><p>
+          
+                           <span class="bold"><strong>If an item with the specified Key is found in the table:</strong></span>
+        
+                        </p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+                                 <code class="code">PUT</code> - Adds the specified attribute to the item. If the attribute
+              already exists, it is replaced by the new value. </p></li><li class="listitem"><p>
+                                 <code class="code">DELETE</code> - If no value is specified, the attribute and its value are
+              removed from the item. The data type of the specified value must match the existing
+              value's data type.</p><p>If a <span class="emphasis"><em>set</em></span> of values is specified, then those values are subtracted from the old
+              set. For example, if the attribute value was the set <code class="code">[a,b,c]</code> and the
+                <span class="emphasis"><em>DELETE</em></span> action specified <code class="code">[a,c]</code>, then the final attribute value
+              would be <code class="code">[b]</code>. Specifying an empty set is an error.</p></li><li class="listitem"><p>
+                                 <code class="code">ADD</code> - If the attribute does not already exist, then the attribute
+              and its values are added to the item. If the attribute does exist, then the behavior
+              of <code class="code">ADD</code> depends on the data type of the attribute:</p><div class="itemizedlist"><ul class="itemizedlist" type="square"><li class="listitem"><p>If the existing attribute is a number, and if <span class="emphasis"><em>Value</em></span> is also a number, then
+                  the <span class="emphasis"><em>Value</em></span> is mathematically added to the existing attribute. If
+                    <span class="emphasis"><em>Value</em></span> is a negative number, then it is subtracted from the existing
+                  attribute.</p><div class="aws-note"><p class="aws-note">Note</p><p>
+                  
+                                       </p><p> If you use <code class="code">ADD</code> to increment or decrement a number value for an
+                    item that doesn't exist before the update, DynamoDB uses 0 as the initial
+                    value.</p><p>
+                  
+                                       </p><p>In addition, if you use <code class="code">ADD</code> to update an existing item, and intend
+                    to increment or decrement an attribute value which does not yet exist, DynamoDB
+                    uses <code class="code">0</code> as the initial value. For example, suppose that the item you
+                    want to update does not yet have an attribute named <span class="emphasis"><em>itemcount</em></span>, but you
+                    decide to <code class="code">ADD</code> the number <code class="code">3</code> to this attribute anyway,
+                    even though it currently does not exist. DynamoDB will create the <span class="emphasis"><em>itemcount</em></span>
+                    attribute, set its initial value to <code class="code">0</code>, and finally add
+                      <code class="code">3</code> to it. The result will be a new <span class="emphasis"><em>itemcount</em></span> attribute in
+                    the item, with a value of <code class="code">3</code>.</p><p>
+                
+                                    </p></div></li><li class="listitem"><p>If the existing data type is a set, and if the <span class="emphasis"><em>Value</em></span> is also a set, then
+                  the <span class="emphasis"><em>Value</em></span> is added to the existing set. (This is a <span class="emphasis"><em>set</em></span> operation,
+                  not mathematical addition.) For example, if the attribute value was the set
+                    <code class="code">[1,2]</code>, and the <code class="code">ADD</code> action specified <code class="code">[3]</code>,
+                  then the final attribute value would be <code class="code">[1,2,3]</code>. An error occurs if
+                  an Add action is specified for a set attribute and the attribute type specified
+                  does not match the existing set type. </p><p>Both sets must have the same primitive data type. For example, if the existing
+                  data type is a set of strings, the <span class="emphasis"><em>Value</em></span> must also be a set of strings. The
+                  same holds true for number sets and binary sets.</p></li></ul></div><p>This action is only valid for an existing attribute whose data type is number or is a
+              set. Do not use <code class="code">ADD</code> for any other data types.</p></li></ul></div><p>
+          
+                           <span class="bold"><strong>If no item with the specified Key is found:</strong></span>
+        
+                        </p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+                                 <code class="code">PUT</code> - DynamoDB creates a new item with the specified primary key, and
+              then adds the attribute. </p></li><li class="listitem"><p>
+                                 <code class="code">DELETE</code> - Nothing happens; there is no attribute to delete.</p></li><li class="listitem"><p>
+                                 <code class="code">ADD</code> - DynamoDB creates an item with the supplied primary key and number
+              (or set of numbers) for the attribute value. The only data types allowed are number
+              and number set; no other data types can be specified.</p></li></ul></div></li></ul></div><p>If you specify any attributes that are part of an index key, then the data types for those attributes must match those of the schema in the table's attribute definition.</p><p>
+            Type:
+              String
+					to
+					<a class="xref" href="API_AttributeValueUpdate.html" title="AttributeValueUpdate">AttributeValueUpdate</a>
+						object
+					
+					map
+				</p><p>
+                        Required: No
+                    </p></dd><dt><a name="DDB-UpdateItem-request-Expected"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_RequestSyntax" title="Request Syntax">Expected</a></strong></span>
+         </span></dt><dd><p>A map of attribute/condition pairs. This is the conditional block for the <span class="emphasis"><em>UpdateItem</em></span> operation. All the conditions must be met for the operation to succeed.</p><p>
+                     <span class="emphasis"><em>Expected</em></span> allows you to
+      provide an attribute name, and whether or not DynamoDB should check to see if the attribute value
+      already exists; or if the attribute value exists and has a particular value before changing
+      it.</p><p>Each item in <span class="emphasis"><em>Expected</em></span> represents an attribute name for DynamoDB to check, along with
+      the following: </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <span class="emphasis"><em>Value</em></span> - A value for DynamoDB to compare with an attribute. When performing the comparison, strongly consistent reads are used.</p></li><li class="listitem"><p>
+                           <span class="emphasis"><em>Exists</em></span> - Causes DynamoDB to evaluate the value before attempting a conditional
+          operation:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>If <span class="emphasis"><em>Exists</em></span> is <code class="code">true</code>, DynamoDB will check to see if that attribute
+              value already exists in the table. If it is found, then the operation
+              succeeds. If it is not found, the operation fails with a
+                <span class="emphasis"><em>ConditionalCheckFailedException</em></span>.</p></li><li class="listitem"><p>If <span class="emphasis"><em>Exists</em></span> is <code class="code">false</code>, DynamoDB assumes that the attribute value does
+                <span class="emphasis"><em>not</em></span> exist in the table. If in fact the value does not exist, then the
+              assumption is valid and the operation succeeds. If the value is found,
+              despite the assumption that it does not exist, the operation fails with a
+                <span class="emphasis"><em>ConditionalCheckFailedException</em></span>.</p></li></ul></div><p>The default setting for <span class="emphasis"><em>Exists</em></span> is <code class="code">true</code>. If you supply a <span class="emphasis"><em>Value</em></span>
+          all by itself, DynamoDB assumes the attribute exists:  You don't have to set <span class="emphasis"><em>Exists</em></span> to <code class="code">true</code>, because it is
+          implied.</p><p>DynamoDB returns a <span class="emphasis"><em>ValidationException</em></span> if:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+                                 <span class="emphasis"><em>Exists</em></span> is <code class="code">true</code> but there is no <span class="emphasis"><em>Value</em></span> to check. (You expect
+              a value to exist, but don't specify what that value is.)</p></li><li class="listitem"><p>
+                                 <span class="emphasis"><em>Exists</em></span> is <code class="code">false</code> but you also specify a <span class="emphasis"><em>Value</em></span>. (You cannot
+              expect an attribute to have a value, while also expecting it not to exist.)</p></li></ul></div></li></ul></div><p>If you specify more than one condition for <span class="emphasis"><em>Exists</em></span>, then all of the conditions must
+      evaluate to true. (In other words, the conditions are ANDed together.) Otherwise, the
+      conditional operation will fail.</p><p>
+            Type:
+              String
+					to
+					<a class="xref" href="API_ExpectedAttributeValue.html" title="ExpectedAttributeValue">ExpectedAttributeValue</a>
+						object
+					
+					map
+				</p><p>
+                        Required: No
+                    </p></dd><dt><a name="DDB-UpdateItem-request-ReturnConsumedCapacity"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_RequestSyntax" title="Request Syntax">ReturnConsumedCapacity</a></strong></span>
+         </span></dt><dd><p>If set to <code class="code">TOTAL</code>, the response includes <span class="emphasis"><em>ConsumedCapacity</em></span> data for tables and indexes. If set to <code class="code">INDEXES</code>, the response includes <span class="emphasis"><em>ConsumedCapacity</em></span> for indexes. If set to <code class="code">NONE</code> (the default), <span class="emphasis"><em>ConsumedCapacity</em></span> is not included in the response.</p><p>
+            Type:
+              String</p><p>
+                    Valid Values: <code class="code">INDEXES | TOTAL | NONE</code>
+            </p><p>
+                        Required: No
+                    </p></dd><dt><a name="DDB-UpdateItem-request-ReturnItemCollectionMetrics"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_RequestSyntax" title="Request Syntax">ReturnItemCollectionMetrics</a></strong></span>
+         </span></dt><dd><p>If set to <code class="code">SIZE</code>, statistics about item collections, if any, that were modified during
+      the operation are returned in the response. If set to <code class="code">NONE</code> (the default), no statistics are returned.</p><p>
+            Type:
+              String</p><p>
+                    Valid Values: <code class="code">SIZE | NONE</code>
+            </p><p>
+                        Required: No
+                    </p></dd><dt><a name="DDB-UpdateItem-request-ReturnValues"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_RequestSyntax" title="Request Syntax">ReturnValues</a></strong></span>
+         </span></dt><dd><p>Use <span class="emphasis"><em>ReturnValues</em></span> if you want to get the item attributes as they appeared either before
+      or after they were updated. For <span class="emphasis"><em>UpdateItem</em></span>, the valid values are:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <code class="code">NONE</code> - If <span class="emphasis"><em>ReturnValues</em></span> is not specified, or if its
+          value is <code class="code">NONE</code>, then nothing is returned. (This is the default for <span class="emphasis"><em>ReturnValues</em></span>.)</p></li><li class="listitem"><p>
+                           <code class="code">ALL_OLD</code> - If <span class="emphasis"><em>UpdateItem</em></span> overwrote an attribute name-value pair,
+          then the content of the old item is returned.</p></li><li class="listitem"><p>
+                           <code class="code">UPDATED_OLD</code> - The old versions of only the updated attributes are
+          returned.</p></li><li class="listitem"><p>
+                           <code class="code">ALL_NEW</code> - All of the attributes of the new version of the item are
+          returned.</p></li><li class="listitem"><p>
+                           <code class="code">UPDATED_NEW</code> - The new versions of only the updated attributes are
+          returned.</p></li></ul></div><p>
+            Type:
+              String</p><p>
+                    Valid Values: <code class="code">NONE | ALL_OLD | UPDATED_OLD | ALL_NEW | UPDATED_NEW</code>
+            </p><p>
+                        Required: No
+                    </p></dd></dl></div><a class="indexterm" name="d0e11691"></a><a class="indexterm" name="d0e11694"></a><a class="indexterm" name="d0e11699"></a><a class="indexterm" name="d0e11702"></a><a class="indexterm" name="d0e11707"></a><a class="indexterm" name="d0e11710"></a><a class="indexterm" name="d0e11715"></a><a class="indexterm" name="d0e11718"></a><a class="indexterm" name="d0e11723"></a><a class="indexterm" name="d0e11726"></a><a class="indexterm" name="d0e11731"></a><a class="indexterm" name="d0e11734"></a><a class="indexterm" name="d0e11739"></a><a class="indexterm" name="d0e11742"></a><a class="indexterm" name="d0e11747"></a><a class="indexterm" name="d0e11750"></a><a class="indexterm" name="d0e11755"></a><a class="indexterm" name="d0e11758"></a><a class="indexterm" name="d0e11763"></a><a class="indexterm" name="d0e11766"></a><a class="indexterm" name="d0e11771"></a><a class="indexterm" name="d0e11774"></a><a class="indexterm" name="d0e11779"></a><a class="indexterm" name="d0e11782"></a><a class="indexterm" name="d0e11787"></a><a class="indexterm" name="d0e11790"></a><a class="indexterm" name="d0e11795"></a><a class="indexterm" name="d0e11798"></a><a class="indexterm" name="d0e11803"></a><a class="indexterm" name="d0e11806"></a><a class="indexterm" name="d0e11811"></a><a class="indexterm" name="d0e11814"></a><a class="indexterm" name="d0e11819"></a><a class="indexterm" name="d0e11822"></a><a class="indexterm" name="d0e11827"></a><a class="indexterm" name="d0e11830"></a><a class="indexterm" name="d0e11835"></a><a class="indexterm" name="d0e11838"></a><a class="indexterm" name="d0e11843"></a><a class="indexterm" name="d0e11846"></a><a class="indexterm" name="d0e11851"></a><a class="indexterm" name="d0e11854"></a><a class="indexterm" name="d0e11859"></a><a class="indexterm" name="d0e11862"></a><a class="indexterm" name="d0e11867"></a><a class="indexterm" name="d0e11870"></a><a class="indexterm" name="d0e11875"></a><a class="indexterm" name="d0e11878"></a><a class="indexterm" name="d0e11883"></a><a class="indexterm" name="d0e11886"></a><a class="indexterm" name="d0e11891"></a><a class="indexterm" name="d0e11894"></a><a class="indexterm" name="d0e11899"></a><a class="indexterm" name="d0e11902"></a><a class="indexterm" name="d0e11907"></a><a class="indexterm" name="d0e11910"></a><a class="indexterm" name="d0e11915"></a><a class="indexterm" name="d0e11918"></a><a class="indexterm" name="d0e11923"></a><a class="indexterm" name="d0e11926"></a><a class="indexterm" name="d0e11931"></a><a class="indexterm" name="d0e11934"></a><a class="indexterm" name="d0e11939"></a><a class="indexterm" name="d0e11942"></a><a class="indexterm" name="d0e11947"></a><a class="indexterm" name="d0e11950"></a><a class="indexterm" name="d0e11955"></a><a class="indexterm" name="d0e11958"></a><a class="indexterm" name="d0e11963"></a><a class="indexterm" name="d0e11966"></a><a class="indexterm" name="d0e11971"></a><a class="indexterm" name="d0e11974"></a><a class="indexterm" name="d0e11979"></a><a class="indexterm" name="d0e11982"></a><a class="indexterm" name="d0e11987"></a><a class="indexterm" name="d0e11990"></a><a class="indexterm" name="d0e11995"></a><a class="indexterm" name="d0e11998"></a><a class="indexterm" name="d0e12003"></a><a class="indexterm" name="d0e12006"></a><a class="indexterm" name="d0e12011"></a><a class="indexterm" name="d0e12014"></a><a class="indexterm" name="d0e12019"></a><a class="indexterm" name="d0e12022"></a><a class="indexterm" name="d0e12027"></a><a class="indexterm" name="d0e12030"></a><a class="indexterm" name="d0e12035"></a><a class="indexterm" name="d0e12038"></a><a class="indexterm" name="d0e12043"></a><a class="indexterm" name="d0e12046"></a><a class="indexterm" name="d0e12051"></a><a class="indexterm" name="d0e12054"></a><a class="indexterm" name="d0e12059"></a><a class="indexterm" name="d0e12062"></a><a class="indexterm" name="d0e12067"></a><a class="indexterm" name="d0e12070"></a><a class="indexterm" name="d0e12075"></a><a class="indexterm" name="d0e12078"></a><a class="indexterm" name="d0e12083"></a><a class="indexterm" name="d0e12086"></a><a class="indexterm" name="d0e12091"></a><a class="indexterm" name="d0e12094"></a><a class="indexterm" name="d0e12099"></a><a class="indexterm" name="d0e12102"></a><a class="indexterm" name="d0e12107"></a><a class="indexterm" name="d0e12110"></a><a class="indexterm" name="d0e12115"></a><a class="indexterm" name="d0e12118"></a><a class="indexterm" name="d0e12123"></a><a class="indexterm" name="d0e12126"></a><a class="indexterm" name="d0e12131"></a><a class="indexterm" name="d0e12134"></a><a class="indexterm" name="d0e12139"></a><a class="indexterm" name="d0e12142"></a><a class="indexterm" name="d0e12147"></a><a class="indexterm" name="d0e12150"></a><a class="indexterm" name="d0e12155"></a><a class="indexterm" name="d0e12158"></a><a class="indexterm" name="d0e12163"></a><a class="indexterm" name="d0e12166"></a><a class="indexterm" name="d0e12171"></a><a class="indexterm" name="d0e12174"></a><a class="indexterm" name="d0e12179"></a><a class="indexterm" name="d0e12182"></a><a class="indexterm" name="d0e12187"></a><a class="indexterm" name="d0e12190"></a><a class="indexterm" name="d0e12195"></a><a class="indexterm" name="d0e12198"></a><a class="indexterm" name="d0e12203"></a><a class="indexterm" name="d0e12206"></a><a class="indexterm" name="d0e12211"></a><a class="indexterm" name="d0e12214"></a><a class="indexterm" name="d0e12219"></a><a class="indexterm" name="d0e12222"></a><a class="indexterm" name="d0e12227"></a><a class="indexterm" name="d0e12230"></a><a class="indexterm" name="d0e12235"></a><a class="indexterm" name="d0e12238"></a><a class="indexterm" name="d0e12243"></a><a class="indexterm" name="d0e12246"></a><a class="indexterm" name="d0e12251"></a><a class="indexterm" name="d0e12254"></a><a class="indexterm" name="d0e12259"></a><a class="indexterm" name="d0e12262"></a><a class="indexterm" name="d0e12267"></a><a class="indexterm" name="d0e12270"></a><a class="indexterm" name="d0e12275"></a><a class="indexterm" name="d0e12278"></a><a class="indexterm" name="d0e12283"></a><a class="indexterm" name="d0e12286"></a><a class="indexterm" name="d0e12291"></a><a class="indexterm" name="d0e12294"></a><a class="indexterm" name="d0e12299"></a><a class="indexterm" name="d0e12302"></a><a class="indexterm" name="d0e12307"></a><a class="indexterm" name="d0e12310"></a><a class="indexterm" name="d0e12315"></a><a class="indexterm" name="d0e12318"></a><a class="indexterm" name="d0e12323"></a><a class="indexterm" name="d0e12326"></a><a class="indexterm" name="d0e12331"></a><a class="indexterm" name="d0e12334"></a></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_UpdateItem_ResponseSyntax">Response Syntax</h2></div></div></div><pre class="programlisting">
+{
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-response-Attributes">Attributes</a>": 
+        {
+            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                {
+                    "B": "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>",
+                    "BS": [
+                        "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>"
+                    ],
+                    "N": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                    "NS": [
+                        "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                    ],
+                    "S": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                    "SS": [
+                        "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                    ]
+                }
+        },
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-response-ConsumedCapacity">ConsumedCapacity</a>": {
+        "<a class="link" href="API_ConsumedCapacity.html#DDB-Type-ConsumedCapacity-CapacityUnits">CapacityUnits</a>": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>",
+        "<a class="link" href="API_ConsumedCapacity.html#DDB-Type-ConsumedCapacity-GlobalSecondaryIndexes">GlobalSecondaryIndexes</a>": 
+            {
+                "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                    {
+                        "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+                    }
+            },
+        "<a class="link" href="API_ConsumedCapacity.html#DDB-Type-ConsumedCapacity-LocalSecondaryIndexes">LocalSecondaryIndexes</a>": 
+            {
+                "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                    {
+                        "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+                    }
+            },
+        "<a class="link" href="API_ConsumedCapacity.html#DDB-Type-ConsumedCapacity-Table">Table</a>": {
+            "<a class="link" href="API_Capacity.html#DDB-Type-Capacity-CapacityUnits">CapacityUnits</a>": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+        },
+        "<a class="link" href="API_ConsumedCapacity.html#DDB-Type-ConsumedCapacity-TableName">TableName</a>": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+    },
+    "<a class="link" href="API_UpdateItem.html#DDB-UpdateItem-response-ItemCollectionMetrics">ItemCollectionMetrics</a>": {
+        "<a class="link" href="API_ItemCollectionMetrics.html#DDB-Type-ItemCollectionMetrics-ItemCollectionKey">ItemCollectionKey</a>": 
+            {
+                "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                    {
+                        "B": "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>",
+                        "BS": [
+                            "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>"
+                        ],
+                        "N": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                        "NS": [
+                            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                        ],
+                        "S": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                        "SS": [
+                            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                        ]
+                    }
+            },
+        "<a class="link" href="API_ItemCollectionMetrics.html#DDB-Type-ItemCollectionMetrics-SizeEstimateRangeGB">SizeEstimateRangeGB</a>": [
+            "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+        ]
+    }
+}
+			</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_UpdateItem_ResponseElements">Response Elements</h2></div></div></div><p>
+				The following data is returned in JSON format by the service.
+			</p><div class="variablelist"><dl><dt><a name="DDB-UpdateItem-response-Attributes"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_ResponseSyntax" title="Response Syntax">Attributes</a></strong></span>
+         </span></dt><dd><p>A map of attribute values as they appeared before the <span class="emphasis"><em>UpdateItem</em></span> operation, but only if
+        <span class="emphasis"><em>ReturnValues</em></span> was specified as something other than <code class="code">NONE</code> in
+      the request. Each element represents one attribute.</p><p>
+            Type:
+              String
+					to
+					<a class="xref" href="API_AttributeValue.html" title="AttributeValue">AttributeValue</a>
+						object
+					
+					map
+				</p></dd><dt><a name="DDB-UpdateItem-response-ConsumedCapacity"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_ResponseSyntax" title="Response Syntax">ConsumedCapacity</a></strong></span>
+         </span></dt><dd><p>Represents the capacity units consumed by an operation. The data returned includes the total provisioned throughput consumed, along with statistics for the table and any indexes involved in the operation. <span class="emphasis"><em>ConsumedCapacity</em></span> is only returned if it was asked for in the request. For more information, see <a class="ulink" href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughputIntro.html" target="_blank">Provisioned Throughput</a> in the Amazon DynamoDB Developer Guide.</p><p>
+            Type:
+              <a class="xref" href="API_ConsumedCapacity.html" title="ConsumedCapacity">ConsumedCapacity</a>
+						object
+					</p></dd><dt><a name="DDB-UpdateItem-response-ItemCollectionMetrics"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_UpdateItem.html#API_UpdateItem_ResponseSyntax" title="Response Syntax">ItemCollectionMetrics</a></strong></span>
+         </span></dt><dd><p>Information about item collections, if any, that were affected by the operation. <span class="emphasis"><em>ItemCollectionMetrics</em></span> is only returned if it was asked for in the request. If the
+      table does not have any local secondary indexes, this information is not returned in the
+      response.</p><p>
+            Type:
+              <a class="xref" href="API_ItemCollectionMetrics.html" title="ItemCollectionMetrics">ItemCollectionMetrics</a>
+						object
+					</p></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_UpdateItem_Errors">Errors</h2></div></div></div><a class="indexterm" name="d0e12534"></a><a class="indexterm" name="d0e12537"></a><a class="indexterm" name="d0e12542"></a><a class="indexterm" name="d0e12545"></a><a class="indexterm" name="d0e12550"></a><a class="indexterm" name="d0e12553"></a><a class="indexterm" name="d0e12558"></a><a class="indexterm" name="d0e12561"></a><a class="indexterm" name="d0e12566"></a><a class="indexterm" name="d0e12569"></a><p>
+					For information about the errors that are common to all actions, see
+					<a class="xref" href="CommonErrors.html" title="Common Errors">Common Errors</a>.
+				</p><div class="variablelist"><dl><dt><span class="term">
+               <span class="bold"><strong>ConditionalCheckFailedException</strong></span>
+            </span></dt><dd><p>A condition specified in the operation could not be evaluated.</p><p>
+									HTTP Status Code:
+									400</p></dd><dt><span class="term">
+               <span class="bold"><strong>InternalServerError</strong></span>
+            </span></dt><dd><p>An error occurred on the server side.</p><p>
+									HTTP Status Code:
+									500</p></dd><dt><span class="term">
+               <span class="bold"><strong>ItemCollectionSizeLimitExceededException</strong></span>
+            </span></dt><dd><p>An item collection is too large. This exception is only returned for tables that have one or
+      more local secondary indexes.</p><p>
+									HTTP Status Code:
+									400</p></dd><dt><span class="term">
+               <span class="bold"><strong>ProvisionedThroughputExceededException</strong></span>
+            </span></dt><dd><p>The request rate is too high, or the request is too large, for the available throughput to
+      accommodate. The AWS SDKs automatically retry requests that receive this exception;
+      therefore, your request will eventually succeed, unless the request is too large or your retry
+      queue is too large to finish. Reduce the frequency of requests by using the strategies listed in
+        <a class="ulink" href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries" target="_blank">Error Retries and Exponential Backoff</a> in the Amazon DynamoDB Developer Guide.</p><p>
+									HTTP Status Code:
+									400</p></dd><dt><span class="term">
+               <span class="bold"><strong>ResourceNotFoundException</strong></span>
+            </span></dt><dd><p>The operation tried to access a nonexistent table or index. The resource may not be specified correctly, or its status may not be <code class="code">ACTIVE</code>.</p><p>
+									HTTP Status Code:
+									400</p></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_UpdateItem_Examples">Examples</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title" id="API_UpdateItem_Example_Conditional Update">Conditional Update</h3></div></div></div>
+          
+                        This example updates the Thread table, changing the LastPostedBy attribute-but
+            only if LastPostedBy is currently "fred@example.com". All of the item's attributes, as
+            they appear after the update, are returned in the response.
+        
+                     <div class="section"><div class="titlepage"><div><div><h4 class="title" id="API_UpdateItem_Example_Conditional Update_Request">Sample Request</h4></div></div></div><pre class="programlisting">
+POST / HTTP/1.1
+Host: dynamodb.&lt;region&gt;.&lt;domain&gt;;
+X-Amz-Date: &lt;Date&gt;
+Authorization: AWS4-HMAC-SHA256 Credential=&lt;Credential&gt;, SignedHeaders=content-length;content-type;host;user-agent;x-amz-content-sha256;x-amz-date;x-amz-target, Signature=&lt;Signature&gt;
+User-Agent: &lt;UserAgentString&gt;
+x-amz-content-sha256: &lt;PayloadHash&gt;
+Content-Type: application/x-amz-json-1.0
+Content-Length: &lt;PayloadSizeBytes&gt;     
+Connection: Keep-Alive
+X-Amz-Target: DynamoDB_20120810.UpdateItem 
+
+{
+    "TableName": "Thread",
+    "Key": {
+        "ForumName": {
+            "S": "Amazon DynamoDB"
+        },
+        "Subject": {
+            "S": "Maximum number of items?"
+        }
+    },
+    "AttributeUpdates": {
+        "LastPostedBy": {
+            "Value": {
+                "S": "alice@example.com"
+            },
+            "Action": "PUT"
+        }
+    },
+    "Expected": {
+        "LastPostedBy": {
+            "Value": {
+                "S": "fred@example.com"
+            },
+            "Exists": true
+        }
+    },
+    "ReturnValues": "ALL_NEW"
+}
+        </pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title" id="API_UpdateItem_Example_Conditional Update_Response">Sample Response</h4></div></div></div><pre class="programlisting">
+HTTP/1.1 200 OK
+x-amzn-RequestId: &lt;RequestId&gt; 
+x-amz-crc32: &lt;Checksum&gt;
+Content-Type: application/x-amz-json-1.0
+Content-Length: &lt;PayloadSizeBytes&gt;
+Date: &lt;Date&gt;
+
+{
+    "Attributes": {
+        "LastPostedBy": {
+            "S": "alice@example.com"
+        },
+        "ForumName": {
+            "S": "Amazon DynamoDB"
+        },
+        "LastPostDateTime": {
+            "S": "20130320010350"
+        },
+        "Tags": {
+            "SS": ["Update","Multiple Items","HelpMe"]
+        },
+        "Subject": {
+            "S": "Maximum number of items?"
+        },
+        "Views": {
+            "N": "5"
+        },
+        "Message": {
+            "S": "I want to put 10 million data items to an Amazon DynamoDB table.  Is there an upper limit?"
+        }
+    }
+}
+        </pre></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title" id="API_UpdateItem_Example_Atomic Counter">Atomic Counter</h3></div></div></div>
+          
+                        This example increments the Replies attribute in the Thread table whenever someone
+            posts a reply. Because ReturnValues is set to NONE, no output appears in the response
+            payload.
+        
+                     <div class="section"><div class="titlepage"><div><div><h4 class="title" id="API_UpdateItem_Example_Atomic Counter_Request">Sample Request</h4></div></div></div><pre class="programlisting">
+POST / HTTP/1.1
+Host: dynamodb.&lt;region&gt;.&lt;domain&gt;;
+X-Amz-Date: &lt;Date&gt;
+Authorization: AWS4-HMAC-SHA256 Credential=&lt;Credential&gt;, SignedHeaders=content-length;content-type;host;user-agent;x-amz-content-sha256;x-amz-date;x-amz-target, Signature=&lt;Signature&gt;
+User-Agent: &lt;UserAgentString&gt;
+x-amz-content-sha256: &lt;PayloadHash&gt;
+Content-Type: application/x-amz-json-1.0
+Content-Length: &lt;PayloadSizeBytes&gt;     
+Connection: Keep-Alive
+X-Amz-Target: DynamoDB_20120810.UpdateItem 
+
+{
+    "TableName": "Thread",
+    "Key": {
+        "ForumName": {
+            "S": "Amazon DynamoDB"
+        },
+        "Subject": {
+            "S": "A question about updates"
+        }
+    },
+    "AttributeUpdates": {
+        "Replies": {
+            "Action": "ADD",
+            "Value": {"N": "1"}
+        }
+    },
+    "ReturnValues" : "NONE"
+}
+        </pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title" id="API_UpdateItem_Example_Atomic Counter_Response">Sample Response</h4></div></div></div><pre class="programlisting">
+HTTP/1.1 200 OK
+x-amzn-RequestId: &lt;RequestId&gt; 
+x-amz-crc32: &lt;Checksum&gt;
+Content-Type: application/x-amz-json-1.0
+Content-Length: &lt;PayloadSizeBytes&gt;
+Date: &lt;Date&gt;
+
+{          
+}
+        </pre></div></div></div></div><img src="images/expanderarrow.png" style="display:none;height:0;width:0"><div class="navfooter"><table class="navfooter" width="100%" summary="Navigation footer" cellspacing="0" cellpadding="2" style="margin-top:12px;"><tr><td valign="top" style="padding-top:8px;"><a class="awstoc" target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></td><td width="350px" align="right" valign="top" style="padding-top:8px;"><a class="awstoc" accesskey="p" style="margin-right:12px;" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-previous', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_Scan.html');" href="API_Scan.html">&laquo; Previous</a><a class="awstoc" accesskey="n" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-next', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_UpdateTable.html');" href="API_UpdateTable.html">Next &raquo;</a></td></tr><tr><td style="padding-top:8px;"><a class="awstoc" target="_top" href="http://aws.amazon.com/terms/">Terms of Use</a></td><td width="350px" align="right" valign="top" style="padding-top:8px;">Did this page help you?&nbsp;&nbsp;<a class="awstoc" target="_blank" href="feedbackyes.html?topic_id=API_UpdateItem">Yes</a>&nbsp;|&nbsp;<a class="awstoc" target="_blank" href="feedbackno.html?topic_id=API_UpdateItem">No</a>&nbsp;|&nbsp;&nbsp;<a class="awstoc" target="_blank" href="https://portal.aws.amazon.com/gp/aws/html-forms-controller/documentation/aws_doc_feedback_04?service_name=DynamoDB&amp;guide_name=API%20Reference&amp;api_version=2012-08-10&amp;file_name=API_UpdateItem">Tell us about it...</a></td></tr></table></div></div></div><noscript><div class="yui-b" style="padding: 20px; padding-top: 0;"><div class="yui-ge"><div class="yui-u first"><div id="error_messages"><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" style="float: left;" alt="Warning"><div style="float:left; margin-left: 1em;"><strong>Javascript is disabled or is unavailable in your browser.</strong><br>
+										To use the AWS Documentation, Javascript must be enabled.  Please refer to your 
+										browser's Help pages for instructions.
+									</div><div style="clear: both;"></div></div></div></div></div></noscript><!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://d36cz9buwru1tt.cloudfront.net/js/sitecatalyst/s_code.min.js"></script><script language="JavaScript" type="text/javascript"><!--
+
+            // Documentation Service Name
+            s.prop66='Amazon DynamoDB';
+            s.eVar66='D=c66';
+  
+            // Documentation Guide Name                                                                 
+            s.prop65='API Reference';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript"><!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="http://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt=""></noscript><!--/DO NOT REMOVE/--><!-- End SiteCatalyst code version: H.25.2. --></body></html>

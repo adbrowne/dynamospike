@@ -1,0 +1,448 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta http-equiv="X-UA-Compatible" content="IE=8"><title>BatchWriteItem - Amazon DynamoDB</title><link rel="home" href="#top" title="Amazon DynamoDB"><link rel="up" href="API_Operations.html" title="Actions"><link rel="prev" href="API_BatchGetItem.html" title="BatchGetItem"><link rel="next" href="API_CreateTable.html" title="CreateTable"><meta http-equiv="X-UA-Compatible" content="IE=8"><meta name="description" content="The BatchWriteItem operation puts or deletes multiple items in one or more tables. A single call to BatchWriteItem can write up to 1 MB of data, which can comprise as many as 25 put or delete requests. Individual items to be written can be as large as 64 KB."><meta name="keywords" content="API,BatchWriteItem,requests,RequestItems.entry.N.value.member.N.member.PutRequest.Item.entry.N.value.B,parameters,RequestItems.entry.N.value.member.N.member.DeleteRequest.Key.entry.N.value.B,"><link rel="icon" type="image/ico" href="//d36cz9buwru1tt.cloudfront.net/favicon.ico"><link rel="shortcut icon" type="image/ico" href="//d36cz9buwru1tt.cloudfront.net/favicon.ico"><link rel="canonical" href="http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html"><link rel="stylesheet" type="text/css" href="aws-docs2.css"><script type="text/javascript" src="https://d36cz9buwru1tt.cloudfront.net/amznUrchin.js"></script><script src="all_1.js" type="text/javascript"></script><script src="awstoc.js" type="text/javascript"></script></head><body id="top" class="yui-skin-sam noJS"><div id="divHeader"><form method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html"><div id="ad"><a id="adl" target="_top" href="http://aws.amazon.com/documentation"><img id="adi" alt="Amazon Web Services" src="images/documentation_logo200x29.png"></a></div><div id="txt"><div id="srv">Amazon DynamoDB</div><div id="gd">API Reference (API Version 2012-08-10)</div></div><div id="sfrm"><span id="lbl"><label>Search: </label></span><select id="sel" name="searchPath"><option value="all">Entire Site</option><option value="AWSMarketplace">AMIs from AWS Marketplace</option><option value="amis">AMIs from All Sources</option><option value="articles">Articles &amp; Tutorials</option><option value="products_and_info">AWS Product Information</option><option value="case_studies">Case Studies</option><option value="customerapps">Customer Apps</option><option value="documentation">Documentation</option><option value="documentation-product">Documentation - This Product</option><option value="documentation-guide" selected>Documentation - This Guide</option><option value="datasets">Public Data Sets</option><option value="releasenotes">Release Notes</option><option value="solution_providers">Partners</option><option value="code">Sample Code &amp; Libraries</option></select><input id="sq" name="searchQuery" type="text"><input id="sb" src="images/search-button.png" alt="Go" type="image"></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon DynamoDB"><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="API Reference"><input type="hidden" name="doc_locale" value="en_us"></form></div><script type="text/javascript"><!--
+						var thispage = "API_BatchWriteItem.html";
+						var tocroot = location.protocol + '//' + location.hostname + location.pathname;
+						--></script><div id="divLeft"><div id="divTOC"><ul class="awstoc"><li class="awstoc leaf"><a class="awstoc" href="Welcome.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-Welcome.html');">Welcome</a></li><li class="awstoc opened"><a class="awstoc" href="API_Operations.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Operations.html');">Actions</a><ul class="awstoc"><li class="awstoc leaf"><a class="awstoc" href="API_BatchGetItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchGetItem.html');">BatchGetItem</a></li><li class="awstoc leaf"><a class="awstoc selected" href="API_BatchWriteItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchWriteItem.html');">BatchWriteItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_CreateTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_CreateTable.html');">CreateTable</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteItem.html');">DeleteItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteTable.html');">DeleteTable</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DescribeTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DescribeTable.html');">DescribeTable</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GetItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GetItem.html');">GetItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ListTables.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ListTables.html');">ListTables</a></li><li class="awstoc leaf"><a class="awstoc" href="API_PutItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_PutItem.html');">PutItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Query.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Query.html');">Query</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Scan.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Scan.html');">Scan</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateItem.html');">UpdateItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateTable.html');">UpdateTable</a></li></ul></li><li class="awstoc closed"><a class="awstoc" href="API_Types.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Types.html');">Data Types</a><ul class="awstoc"><li class="awstoc leaf"><a class="awstoc" href="API_AttributeDefinition.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_AttributeDefinition.html');">AttributeDefinition</a></li><li class="awstoc leaf"><a class="awstoc" href="API_AttributeValue.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_AttributeValue.html');">AttributeValue</a></li><li class="awstoc leaf"><a class="awstoc" href="API_AttributeValueUpdate.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_AttributeValueUpdate.html');">AttributeValueUpdate</a></li><li class="awstoc leaf"><a class="awstoc" href="API_BatchGetItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchGetItemResult.html');">BatchGetItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_BatchWriteItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchWriteItemResult.html');">BatchWriteItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Capacity.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Capacity.html');">Capacity</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Condition.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Condition.html');">Condition</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ConsumedCapacity.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ConsumedCapacity.html');">ConsumedCapacity</a></li><li class="awstoc leaf"><a class="awstoc" href="API_CreateTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_CreateTableResult.html');">CreateTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteItemResult.html');">DeleteItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteRequest.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteRequest.html');">DeleteRequest</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteTableResult.html');">DeleteTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DescribeTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DescribeTableResult.html');">DescribeTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ExpectedAttributeValue.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ExpectedAttributeValue.html');">ExpectedAttributeValue</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GetItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GetItemResult.html');">GetItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GlobalSecondaryIndex.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GlobalSecondaryIndex.html');">GlobalSecondaryIndex</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GlobalSecondaryIndexDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GlobalSecondaryIndexDescription.html');">GlobalSecondaryIndexDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GlobalSecondaryIndexUpdate.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GlobalSecondaryIndexUpdate.html');">GlobalSecondaryIndexUpdate</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ItemCollectionMetrics.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ItemCollectionMetrics.html');">ItemCollectionMetrics</a></li><li class="awstoc leaf"><a class="awstoc" href="API_KeySchemaElement.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_KeySchemaElement.html');">KeySchemaElement</a></li><li class="awstoc leaf"><a class="awstoc" href="API_KeysAndAttributes.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_KeysAndAttributes.html');">KeysAndAttributes</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ListTablesResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ListTablesResult.html');">ListTablesResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_LocalSecondaryIndex.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_LocalSecondaryIndex.html');">LocalSecondaryIndex</a></li><li class="awstoc leaf"><a class="awstoc" href="API_LocalSecondaryIndexDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_LocalSecondaryIndexDescription.html');">LocalSecondaryIndexDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Projection.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Projection.html');">Projection</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ProvisionedThroughput.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ProvisionedThroughput.html');">ProvisionedThroughput</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ProvisionedThroughputDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ProvisionedThroughputDescription.html');">ProvisionedThroughputDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_PutItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_PutItemResult.html');">PutItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_PutRequest.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_PutRequest.html');">PutRequest</a></li><li class="awstoc leaf"><a class="awstoc" href="API_QueryResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_QueryResult.html');">QueryResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ScanResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ScanResult.html');">ScanResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_TableDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_TableDescription.html');">TableDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateGlobalSecondaryIndexAction.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateGlobalSecondaryIndexAction.html');">UpdateGlobalSecondaryIndexAction</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateItemResult.html');">UpdateItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateTableResult.html');">UpdateTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_WriteRequest.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_WriteRequest.html');">WriteRequest</a></li></ul></li><li class="awstoc leaf"><a class="awstoc" href="CommonErrors.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-CommonErrors.html');">Common Errors</a></li></ul></div></div><div id="divRight"><div id="divContent"><table width="100%" summary="Navigation header" cellspacing="0" cellpadding="2" style="margin-top:12px;"><tr><td valign="top"><div class="navheader"><div class="breadcrumb"><a href="http://aws.amazon.com/documentation" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', 'http://aws.amazon.com/documentation');">AWS Documentation</a> &raquo; <a href="http://aws.amazon.com/documentation/dynamodb/" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', 'http://aws.amazon.com/documentation/dynamodb/');">Amazon DynamoDB</a> &raquo; <a href="http://docs.aws.amazon.com/amazondynamodb/latest/APIReference" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', 'http://docs.aws.amazon.com/amazondynamodb/latest/APIReference');">API Reference</a> &raquo; <a href="API_Operations.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_Operations.html');">Actions</a> &raquo; <span class="breadcrumb">BatchWriteItem</span></div></div></td><td width="350px" align="right" valign="top"><a class="awstoc" accesskey="p" style="margin-right:12px;" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-previous', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_BatchGetItem.html');" href="API_BatchGetItem.html">&laquo; Previous</a><a class="awstoc" accesskey="n" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-next', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_CreateTable.html');" href="API_CreateTable.html">Next &raquo;</a></td></tr><tr><td><a href="http://awsdocs.s3.amazonaws.com/dynamodb/latest/dynamodb-api.pdf" style="padding-right: 8px;" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-pdf-link', 'aws-docs-click', 'http://awsdocs.s3.amazonaws.com/dynamodb/latest/dynamodb-api.pdf');"><img src="images/pdf_button.png" alt="View the PDF for this guide." title="View the PDF for this guide."></a><a target="_blank" style="padding-right: 8px;" href="http://forums.aws.amazon.com/forum.jspa?forumID=131" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-forums-link', 'aws-docs-click', 'http://forums.aws.amazon.com/forum.jspa?forumID=131');"><img src="images/forum_button.png" alt="Go to the AWS Discussion Forum for this product." title="Go to the AWS Discussion Forum for this product."></a></td><td width="350px" align="right" valign="top">Did this page help you?&nbsp;&nbsp;<a class="awstoc" target="_blank" href="feedbackyes.html?topic_id=API_BatchWriteItem">Yes</a>&nbsp;|&nbsp;<a class="awstoc" target="_blank" href="feedbackno.html?topic_id=API_BatchWriteItem">No</a>&nbsp;|&nbsp;&nbsp;<a class="awstoc" target="_blank" href="https://portal.aws.amazon.com/gp/aws/html-forms-controller/documentation/aws_doc_feedback_04?service_name=DynamoDB&amp;guide_name=API%20Reference&amp;api_version=2012-08-10&amp;file_name=API_BatchWriteItem">Tell us about it...</a></td></tr></table><div class="section"><div class="titlepage"><div><div><h1 class="topictitle">BatchWriteItem</h1></div></div></div><a class="indexterm" name="d0e1330"></a><a class="indexterm" name="d0e1335"></a><a class="indexterm" name="d0e1340"></a><p>The <span class="emphasis"><em>BatchWriteItem</em></span> operation puts or deletes multiple items in one or more tables. A
+      single call to <span class="emphasis"><em>BatchWriteItem</em></span> can write up to 1 MB of data, which can comprise as many
+      as 25 put or delete requests. Individual items to be written can be as large as 64 KB.</p><div class="aws-note"><p class="aws-note">Note</p><p>
+      
+                  </p><p>
+                     <span class="emphasis"><em>BatchWriteItem</em></span> cannot update items. To update items, use the <span class="emphasis"><em>UpdateItem</em></span>
+        API.</p><p>
+    
+               </p></div><p>The individual <span class="emphasis"><em>PutItem</em></span> and <span class="emphasis"><em>DeleteItem</em></span> operations specified in
+        <span class="emphasis"><em>BatchWriteItem</em></span> are atomic; however <span class="emphasis"><em>BatchWriteItem</em></span> as a whole is not. If any
+      requested operations fail because the table's provisioned throughput is exceeded or an
+      internal processing failure occurs, the failed operations are returned in the
+        <span class="emphasis"><em>UnprocessedItems</em></span> response parameter. You can investigate and optionally resend the
+      requests. Typically, you would call <span class="emphasis"><em>BatchWriteItem</em></span> in a loop. Each iteration would
+      check for unprocessed items and submit a new <span class="emphasis"><em>BatchWriteItem</em></span> request with those
+      unprocessed items until all items have been processed.</p><p>To write one item, you can use the <span class="emphasis"><em>PutItem</em></span> operation; to delete one item, you can use the <span class="emphasis"><em>DeleteItem</em></span> operation.</p><p>With <span class="emphasis"><em>BatchWriteItem</em></span>, you can efficiently write or delete large amounts of data, such
+      as from Amazon Elastic MapReduce (EMR), or copy data from another database into DynamoDB. In
+      order to improve performance with these large-scale operations, <span class="emphasis"><em>BatchWriteItem</em></span> does not
+      behave in the same way as individual <span class="emphasis"><em>PutItem</em></span> and <span class="emphasis"><em>DeleteItem</em></span> calls would For
+      example, you cannot specify conditions on individual put and delete requests, and
+        <span class="emphasis"><em>BatchWriteItem</em></span> does not return deleted items in the response.</p><p>If you use a programming language that supports concurrency, such as Java, you can use
+      threads to write items in parallel. Your application must include the necessary logic to manage the threads.</p><p>With languages that don't support threading, such as PHP, <span class="emphasis"><em>BatchWriteItem</em></span> will write or
+      delete the specified items one at a time. In both situations, <span class="emphasis"><em>BatchWriteItem</em></span> provides
+      an alternative where the API performs the specified put and delete operations in parallel,
+      giving you the power of the thread pool approach without having to introduce complexity into
+      your application.</p><p>Parallel processing reduces latency, but each specified put and delete request consumes the
+      same number of write capacity units whether it is processed in parallel or not. Delete
+      operations on nonexistent items consume one write capacity unit.</p><p>If one or more of the following is true, DynamoDB rejects the entire batch write operation:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>One or more tables specified in the <span class="emphasis"><em>BatchWriteItem</em></span> request does not
+          exist.</p></li><li class="listitem"><p>Primary key attributes specified on an item in the request do not match those in the
+        corresponding table's primary key schema.</p></li><li class="listitem"><p>You try to perform multiple operations on the same item in the same
+          <span class="emphasis"><em>BatchWriteItem</em></span> request. For example, you cannot put and delete the same item in
+          the same <span class="emphasis"><em>BatchWriteItem</em></span> request. </p></li><li class="listitem"><p>The total request size exceeds 1 MB.</p></li><li class="listitem"><p>Any individual item in a batch exceeds 64 KB.</p></li></ul></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchWriteItem_RequestSyntax">Request Syntax</h2></div></div></div><pre class="programlisting">
+{
+    "<a class="link" href="API_BatchWriteItem.html#DDB-BatchWriteItem-request-RequestItems">RequestItems</a>": 
+        {
+            "<em class="replaceable"><code>string</code></em>" :
+                [
+                    {
+                        "DeleteRequest": {
+                            "Key": 
+                                {
+                                    "<em class="replaceable"><code>string</code></em>" :
+                                        {
+                                            "B": "<em class="replaceable"><code>blob</code></em>",
+                                            "BS": [
+                                                "<em class="replaceable"><code>blob</code></em>"
+                                            ],
+                                            "N": "<em class="replaceable"><code>string</code></em>",
+                                            "NS": [
+                                                "<em class="replaceable"><code>string</code></em>"
+                                            ],
+                                            "S": "<em class="replaceable"><code>string</code></em>",
+                                            "SS": [
+                                                "<em class="replaceable"><code>string</code></em>"
+                                            ]
+                                        }
+                                }
+                        },
+                        "PutRequest": {
+                            "Item": 
+                                {
+                                    "<em class="replaceable"><code>string</code></em>" :
+                                        {
+                                            "B": "<em class="replaceable"><code>blob</code></em>",
+                                            "BS": [
+                                                "<em class="replaceable"><code>blob</code></em>"
+                                            ],
+                                            "N": "<em class="replaceable"><code>string</code></em>",
+                                            "NS": [
+                                                "<em class="replaceable"><code>string</code></em>"
+                                            ],
+                                            "S": "<em class="replaceable"><code>string</code></em>",
+                                            "SS": [
+                                                "<em class="replaceable"><code>string</code></em>"
+                                            ]
+                                        }
+                                }
+                        }
+                    }
+                ]
+        },
+    "<a class="link" href="API_BatchWriteItem.html#DDB-BatchWriteItem-request-ReturnConsumedCapacity">ReturnConsumedCapacity</a>": "<em class="replaceable"><code>string</code></em>",
+    "<a class="link" href="API_BatchWriteItem.html#DDB-BatchWriteItem-request-ReturnItemCollectionMetrics">ReturnItemCollectionMetrics</a>": "<em class="replaceable"><code>string</code></em>"
+}
+			</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchWriteItem_RequestParameters">Request Parameters</h2></div></div></div><p>The request accepts the following data in JSON format.</p><div class="aws-note"><p class="aws-note">Note</p><p>In the following list, the required parameters are described first.</p></div><div class="variablelist"><dl><dt><a name="DDB-BatchWriteItem-request-RequestItems"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchWriteItem.html#API_BatchWriteItem_RequestSyntax" title="Request Syntax">RequestItems</a></strong></span>
+         </span></dt><dd><p>A map of one or more table names and, for each table, a list of operations to be performed
+        (<span class="emphasis"><em>DeleteRequest</em></span> or <span class="emphasis"><em>PutRequest</em></span>). Each element in the map consists of the following:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <span class="emphasis"><em>DeleteRequest</em></span> - Perform a <span class="emphasis"><em>DeleteItem</em></span> operation on the specified item.
+          The item to be deleted is identified by a <span class="emphasis"><em>Key</em></span> subelement:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+                                 <span class="emphasis"><em>Key</em></span> - A map of primary key attribute values that uniquely identify the
+              item. Each entry in this map consists of an attribute name and an attribute value.</p></li></ul></div></li><li class="listitem"><p>
+                           <span class="emphasis"><em>PutRequest</em></span> - Perform a <span class="emphasis"><em>PutItem</em></span> operation on the specified item. The
+          item to be put is identified by an <span class="emphasis"><em>Item</em></span> subelement:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+                                 <span class="emphasis"><em>Item</em></span> - A map of attributes and their values. Each entry in this map consists
+              of an attribute name and an attribute value. Attribute values must not be null; string
+              and binary type attributes must have lengths greater than zero; and set type
+              attributes must not be empty. Requests that contain empty values will be rejected with a
+                <span class="emphasis"><em>ValidationException</em></span>.</p><p>If you specify any attributes that are part of an index key, then the data types for those attributes must match those of the schema in the table's attribute definition.</p></li></ul></div></li></ul></div><p>
+            Type:
+              String
+					to
+					<a class="xref" href="API_WriteRequest.html" title="WriteRequest">WriteRequest</a>
+						object
+					
+					map
+				</p><p>
+                            Length constraints:
+                            
+                                Minimum length of
+                                1.
+                            
+                                Maximum length of
+                                25.
+                            </p><p>
+                        Required: Yes
+                    </p></dd><dt><a name="DDB-BatchWriteItem-request-ReturnConsumedCapacity"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchWriteItem.html#API_BatchWriteItem_RequestSyntax" title="Request Syntax">ReturnConsumedCapacity</a></strong></span>
+         </span></dt><dd><p>If set to <code class="code">TOTAL</code>, the response includes <span class="emphasis"><em>ConsumedCapacity</em></span> data for tables and indexes. If set to <code class="code">INDEXES</code>, the response includes <span class="emphasis"><em>ConsumedCapacity</em></span> for indexes. If set to <code class="code">NONE</code> (the default), <span class="emphasis"><em>ConsumedCapacity</em></span> is not included in the response.</p><p>
+            Type:
+              String</p><p>
+                    Valid Values: <code class="code">INDEXES | TOTAL | NONE</code>
+            </p><p>
+                        Required: No
+                    </p></dd><dt><a name="DDB-BatchWriteItem-request-ReturnItemCollectionMetrics"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchWriteItem.html#API_BatchWriteItem_RequestSyntax" title="Request Syntax">ReturnItemCollectionMetrics</a></strong></span>
+         </span></dt><dd><p>If set to <code class="code">SIZE</code>, statistics about item collections, if any, that were modified during
+      the operation are returned in the response. If set to <code class="code">NONE</code> (the default), no statistics are returned.</p><p>
+            Type:
+              String</p><p>
+                    Valid Values: <code class="code">SIZE | NONE</code>
+            </p><p>
+                        Required: No
+                    </p></dd></dl></div><a class="indexterm" name="d0e1654"></a><a class="indexterm" name="d0e1657"></a><a class="indexterm" name="d0e1662"></a><a class="indexterm" name="d0e1665"></a><a class="indexterm" name="d0e1670"></a><a class="indexterm" name="d0e1673"></a><a class="indexterm" name="d0e1678"></a><a class="indexterm" name="d0e1681"></a><a class="indexterm" name="d0e1686"></a><a class="indexterm" name="d0e1689"></a><a class="indexterm" name="d0e1694"></a><a class="indexterm" name="d0e1697"></a><a class="indexterm" name="d0e1702"></a><a class="indexterm" name="d0e1705"></a><a class="indexterm" name="d0e1710"></a><a class="indexterm" name="d0e1713"></a><a class="indexterm" name="d0e1718"></a><a class="indexterm" name="d0e1721"></a><a class="indexterm" name="d0e1726"></a><a class="indexterm" name="d0e1729"></a><a class="indexterm" name="d0e1734"></a><a class="indexterm" name="d0e1737"></a><a class="indexterm" name="d0e1742"></a><a class="indexterm" name="d0e1745"></a><a class="indexterm" name="d0e1750"></a><a class="indexterm" name="d0e1753"></a><a class="indexterm" name="d0e1758"></a><a class="indexterm" name="d0e1761"></a><a class="indexterm" name="d0e1766"></a><a class="indexterm" name="d0e1769"></a><a class="indexterm" name="d0e1774"></a><a class="indexterm" name="d0e1777"></a><a class="indexterm" name="d0e1782"></a><a class="indexterm" name="d0e1785"></a><a class="indexterm" name="d0e1790"></a><a class="indexterm" name="d0e1793"></a><a class="indexterm" name="d0e1798"></a><a class="indexterm" name="d0e1801"></a><a class="indexterm" name="d0e1806"></a><a class="indexterm" name="d0e1809"></a><a class="indexterm" name="d0e1814"></a><a class="indexterm" name="d0e1817"></a><a class="indexterm" name="d0e1822"></a><a class="indexterm" name="d0e1825"></a><a class="indexterm" name="d0e1830"></a><a class="indexterm" name="d0e1833"></a><a class="indexterm" name="d0e1838"></a><a class="indexterm" name="d0e1841"></a><a class="indexterm" name="d0e1846"></a><a class="indexterm" name="d0e1849"></a><a class="indexterm" name="d0e1854"></a><a class="indexterm" name="d0e1857"></a><a class="indexterm" name="d0e1862"></a><a class="indexterm" name="d0e1865"></a><a class="indexterm" name="d0e1870"></a><a class="indexterm" name="d0e1873"></a><a class="indexterm" name="d0e1878"></a><a class="indexterm" name="d0e1881"></a><a class="indexterm" name="d0e1886"></a><a class="indexterm" name="d0e1889"></a><a class="indexterm" name="d0e1894"></a><a class="indexterm" name="d0e1897"></a><a class="indexterm" name="d0e1902"></a><a class="indexterm" name="d0e1905"></a><a class="indexterm" name="d0e1910"></a><a class="indexterm" name="d0e1913"></a><a class="indexterm" name="d0e1918"></a><a class="indexterm" name="d0e1921"></a><a class="indexterm" name="d0e1926"></a><a class="indexterm" name="d0e1929"></a><a class="indexterm" name="d0e1934"></a><a class="indexterm" name="d0e1937"></a><a class="indexterm" name="d0e1942"></a><a class="indexterm" name="d0e1945"></a><a class="indexterm" name="d0e1950"></a><a class="indexterm" name="d0e1953"></a><a class="indexterm" name="d0e1958"></a><a class="indexterm" name="d0e1961"></a><a class="indexterm" name="d0e1966"></a><a class="indexterm" name="d0e1969"></a><a class="indexterm" name="d0e1974"></a><a class="indexterm" name="d0e1977"></a><a class="indexterm" name="d0e1982"></a><a class="indexterm" name="d0e1985"></a><a class="indexterm" name="d0e1990"></a><a class="indexterm" name="d0e1993"></a><a class="indexterm" name="d0e1998"></a><a class="indexterm" name="d0e2001"></a><a class="indexterm" name="d0e2006"></a><a class="indexterm" name="d0e2009"></a><a class="indexterm" name="d0e2014"></a><a class="indexterm" name="d0e2017"></a><a class="indexterm" name="d0e2022"></a><a class="indexterm" name="d0e2025"></a><a class="indexterm" name="d0e2030"></a><a class="indexterm" name="d0e2033"></a><a class="indexterm" name="d0e2038"></a><a class="indexterm" name="d0e2041"></a><a class="indexterm" name="d0e2046"></a><a class="indexterm" name="d0e2049"></a><a class="indexterm" name="d0e2054"></a><a class="indexterm" name="d0e2057"></a><a class="indexterm" name="d0e2062"></a><a class="indexterm" name="d0e2065"></a><a class="indexterm" name="d0e2070"></a><a class="indexterm" name="d0e2073"></a><a class="indexterm" name="d0e2078"></a><a class="indexterm" name="d0e2081"></a><a class="indexterm" name="d0e2086"></a><a class="indexterm" name="d0e2089"></a><a class="indexterm" name="d0e2094"></a><a class="indexterm" name="d0e2097"></a><a class="indexterm" name="d0e2102"></a><a class="indexterm" name="d0e2105"></a><a class="indexterm" name="d0e2110"></a><a class="indexterm" name="d0e2113"></a><a class="indexterm" name="d0e2118"></a><a class="indexterm" name="d0e2121"></a><a class="indexterm" name="d0e2126"></a><a class="indexterm" name="d0e2129"></a><a class="indexterm" name="d0e2134"></a><a class="indexterm" name="d0e2137"></a></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchWriteItem_ResponseSyntax">Response Syntax</h2></div></div></div><pre class="programlisting">
+{
+    "<a class="link" href="API_BatchWriteItem.html#DDB-BatchWriteItem-response-ConsumedCapacity">ConsumedCapacity</a>": [
+        {
+            "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>",
+            "GlobalSecondaryIndexes": 
+                {
+                    "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                        {
+                            "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+                        }
+                },
+            "LocalSecondaryIndexes": 
+                {
+                    "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                        {
+                            "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+                        }
+                },
+            "Table": {
+                "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+            },
+            "TableName": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+        }
+    ],
+    "<a class="link" href="API_BatchWriteItem.html#DDB-BatchWriteItem-response-ItemCollectionMetrics">ItemCollectionMetrics</a>": 
+        {
+            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                [
+                    {
+                        "ItemCollectionKey": 
+                            {
+                                "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                                    {
+                                        "B": "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>",
+                                        "BS": [
+                                            "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>"
+                                        ],
+                                        "N": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                        "NS": [
+                                            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                        ],
+                                        "S": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                        "SS": [
+                                            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                        ]
+                                    }
+                            },
+                        "SizeEstimateRangeGB": [
+                            "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+                        ]
+                    }
+                ]
+        },
+    "<a class="link" href="API_BatchWriteItem.html#DDB-BatchWriteItem-response-UnprocessedItems">UnprocessedItems</a>": 
+        {
+            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                [
+                    {
+                        "DeleteRequest": {
+                            "Key": 
+                                {
+                                    "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                                        {
+                                            "B": "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>",
+                                            "BS": [
+                                                "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>"
+                                            ],
+                                            "N": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                            "NS": [
+                                                "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                            ],
+                                            "S": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                            "SS": [
+                                                "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                            ]
+                                        }
+                                }
+                        },
+                        "PutRequest": {
+                            "Item": 
+                                {
+                                    "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                                        {
+                                            "B": "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>",
+                                            "BS": [
+                                                "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>"
+                                            ],
+                                            "N": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                            "NS": [
+                                                "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                            ],
+                                            "S": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                            "SS": [
+                                                "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                            ]
+                                        }
+                                }
+                        }
+                    }
+                ]
+        }
+}
+			</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchWriteItem_ResponseElements">Response Elements</h2></div></div></div><p>
+				The following data is returned in JSON format by the service.
+			</p><div class="variablelist"><dl><dt><a name="DDB-BatchWriteItem-response-ConsumedCapacity"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchWriteItem.html#API_BatchWriteItem_ResponseSyntax" title="Response Syntax">ConsumedCapacity</a></strong></span>
+         </span></dt><dd><p>The capacity units consumed by the operation.</p><p>Each element consists of:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <span class="emphasis"><em>TableName</em></span> - The table that consumed the provisioned throughput.</p></li><li class="listitem"><p>
+                           <span class="emphasis"><em>CapacityUnits</em></span> - The total number of capacity units consumed.</p></li></ul></div><p>
+            Type:
+              
+					array of
+					<a class="xref" href="API_ConsumedCapacity.html" title="ConsumedCapacity">ConsumedCapacity</a>
+						objects
+					</p></dd><dt><a name="DDB-BatchWriteItem-response-ItemCollectionMetrics"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchWriteItem.html#API_BatchWriteItem_ResponseSyntax" title="Response Syntax">ItemCollectionMetrics</a></strong></span>
+         </span></dt><dd><p>A list of tables that were processed by <span class="emphasis"><em>BatchWriteItem</em></span> and, for each table,
+      information about any item collections that were affected by individual <span class="emphasis"><em>DeleteItem</em></span> or
+        <span class="emphasis"><em>PutItem</em></span> operations.</p><p>Each entry consists of the following subelements:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <span class="emphasis"><em>ItemCollectionKey</em></span> - The hash key value of the item collection. This is the same as the hash key of the item.</p></li><li class="listitem"><p>
+                           <span class="emphasis"><em>SizeEstimateRange</em></span> - An estimate of item collection size, expressed in
+          GB. This is a two-element array containing a lower bound and an upper bound for
+          the estimate. The estimate includes the size of all the items in the table, plus the size
+          of all attributes projected into all of the local secondary indexes on the table. Use this
+          estimate to measure whether a local secondary index is approaching its size limit.</p><p>The estimate is subject to change over time; therefore, do not rely on the precision or accuracy of the estimate.</p></li></ul></div><p>
+            Type:
+              String
+					to
+					<a class="xref" href="API_ItemCollectionMetrics.html" title="ItemCollectionMetrics">ItemCollectionMetrics</a>
+						object
+					
+					map
+				</p></dd><dt><a name="DDB-BatchWriteItem-response-UnprocessedItems"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchWriteItem.html#API_BatchWriteItem_ResponseSyntax" title="Response Syntax">UnprocessedItems</a></strong></span>
+         </span></dt><dd><p>A map of tables and requests against those tables that were not processed. The
+        <span class="emphasis"><em>UnprocessedItems</em></span> value is in the same form as <span class="emphasis"><em>RequestItems</em></span>, so you can provide
+      this value directly to a subsequent <span class="emphasis"><em>BatchGetItem</em></span> operation. For more information, see
+        <span class="emphasis"><em>RequestItems</em></span> in the Request Parameters section.</p><p>Each <span class="emphasis"><em>UnprocessedItems</em></span> entry consists of a table name and, for that table, a list of
+      operations to perform (<span class="emphasis"><em>DeleteRequest</em></span> or <span class="emphasis"><em>PutRequest</em></span>).</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <span class="emphasis"><em>DeleteRequest</em></span> - Perform a <span class="emphasis"><em>DeleteItem</em></span> operation on the specified item.
+          The item to be deleted is identified by a <span class="emphasis"><em>Key</em></span> subelement:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+                                 <span class="emphasis"><em>Key</em></span> - A map of primary key attribute values that uniquely identify the
+              item. Each entry in this map consists of an attribute name and an attribute value.</p></li></ul></div></li><li class="listitem"><p>
+                           <span class="emphasis"><em>PutRequest</em></span> - Perform a <span class="emphasis"><em>PutItem</em></span> operation on the specified item. The
+          item to be put is identified by an <span class="emphasis"><em>Item</em></span> subelement:</p><div class="itemizedlist"><ul class="itemizedlist" type="circle"><li class="listitem"><p>
+                                 <span class="emphasis"><em>Item</em></span> - A map of attributes and their values. Each entry in this map consists
+              of an attribute name and an attribute value. Attribute values must not be null; string
+              and binary type attributes must have lengths greater than zero; and set type
+              attributes must not be empty. Requests that contain empty values will be rejected with a
+              <span class="emphasis"><em>ValidationException</em></span>.</p><p>If you specify any attributes that are part of an index key, then the data types for those attributes must match those of the schema in the table's attribute definition.</p></li></ul></div></li></ul></div><p>If there are no unprocessed items remaining, the response contains an empty <span class="emphasis"><em>UnprocessedItems</em></span> map.</p><p>
+            Type:
+              String
+					to
+					<a class="xref" href="API_WriteRequest.html" title="WriteRequest">WriteRequest</a>
+						object
+					
+					map
+				</p><p>
+                            Length constraints:
+                            
+                                Minimum length of
+                                1.
+                            
+                                Maximum length of
+                                25.
+                            </p></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchWriteItem_Errors">Errors</h2></div></div></div><a class="indexterm" name="d0e2446"></a><a class="indexterm" name="d0e2449"></a><a class="indexterm" name="d0e2454"></a><a class="indexterm" name="d0e2457"></a><a class="indexterm" name="d0e2462"></a><a class="indexterm" name="d0e2465"></a><a class="indexterm" name="d0e2470"></a><a class="indexterm" name="d0e2473"></a><p>
+					For information about the errors that are common to all actions, see
+					<a class="xref" href="CommonErrors.html" title="Common Errors">Common Errors</a>.
+				</p><div class="variablelist"><dl><dt><span class="term">
+               <span class="bold"><strong>InternalServerError</strong></span>
+            </span></dt><dd><p>An error occurred on the server side.</p><p>
+									HTTP Status Code:
+									500</p></dd><dt><span class="term">
+               <span class="bold"><strong>ItemCollectionSizeLimitExceededException</strong></span>
+            </span></dt><dd><p>An item collection is too large. This exception is only returned for tables that have one or
+      more local secondary indexes.</p><p>
+									HTTP Status Code:
+									400</p></dd><dt><span class="term">
+               <span class="bold"><strong>ProvisionedThroughputExceededException</strong></span>
+            </span></dt><dd><p>The request rate is too high, or the request is too large, for the available throughput to
+      accommodate. The AWS SDKs automatically retry requests that receive this exception;
+      therefore, your request will eventually succeed, unless the request is too large or your retry
+      queue is too large to finish. Reduce the frequency of requests by using the strategies listed in
+        <a class="ulink" href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries" target="_blank">Error Retries and Exponential Backoff</a> in the Amazon DynamoDB Developer Guide.</p><p>
+									HTTP Status Code:
+									400</p></dd><dt><span class="term">
+               <span class="bold"><strong>ResourceNotFoundException</strong></span>
+            </span></dt><dd><p>The operation tried to access a nonexistent table or index. The resource may not be specified correctly, or its status may not be <code class="code">ACTIVE</code>.</p><p>
+									HTTP Status Code:
+									400</p></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchWriteItem_Examples">Examples</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title" id="API_BatchWriteItem_Example_Multiple Operations on One Table">Multiple Operations on One Table</h3></div></div></div>This example writes several items to the Forum table. The response shows that
+          the final put operation failed, possibly because the application exceeded the provisioned
+          throughput on the table. The UnprocessedItems object shows the unsuccessful put request.
+          The application can call BatchWriteItem again to address such unprocessed
+          requests.<div class="section"><div class="titlepage"><div><div><h4 class="title" id="API_BatchWriteItem_Example_Multiple Operations on One Table_Request">Sample Request</h4></div></div></div><pre class="programlisting">
+POST / HTTP/1.1
+Host: dynamodb.&lt;region&gt;.&lt;domain&gt;;
+X-Amz-Date: &lt;Date&gt;
+Authorization: AWS4-HMAC-SHA256 Credential=&lt;Credential&gt;, SignedHeaders=content-length;content-type;host;user-agent;x-amz-content-sha256;x-amz-date;x-amz-target, Signature=&lt;Signature&gt;
+User-Agent: &lt;UserAgentString&gt;
+x-amz-content-sha256: &lt;PayloadHash&gt;
+Content-Type: application/x-amz-json-1.0
+Content-Length: &lt;PayloadSizeBytes&gt;     
+Connection: Keep-Alive X-Amz-Target: DynamoDB_20120810.BatchWriteItem 
+
+{
+    "RequestItems": {
+        "Forum": [
+            {
+                "PutRequest": {
+                    "Item": {
+                        "Name": {
+                            "S": "Amazon DynamoDB"
+                        },
+                        "Category": {
+                            "S": "Amazon Web Services"
+                        }
+                    }
+                }
+            },
+            {
+                "PutRequest": {
+                    "Item": {
+                        "Name": {
+                            "S": "Amazon RDS"
+                        },
+                        "Category": {
+                            "S": "Amazon Web Services"
+                        }
+                    }
+                }
+            },
+            {
+                "PutRequest": {
+                    "Item": {
+                        "Name": {
+                            "S": "Amazon Redshift"
+                        },
+                        "Category": {
+                            "S": "Amazon Web Services"
+                        }
+                    }
+                }
+            },
+            {
+                "PutRequest": {
+                    "Item": {
+                        "Name": {
+                            "S": "Amazon ElastiCache"
+                        },
+                        "Category": {
+                            "S": "Amazon Web Services"
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "ReturnConsumedCapacity": "TOTAL"
+}
+        </pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title" id="API_BatchWriteItem_Example_Multiple Operations on One Table_Response">Sample Response</h4></div></div></div><pre class="programlisting">
+HTTP/1.1 200 OK
+x-amzn-RequestId: &lt;RequestId&gt; 
+x-amz-crc32: &lt;Checksum&gt;
+Content-Type: application/x-amz-json-1.0
+Content-Length: &lt;PayloadSizeBytes&gt;
+Date: &lt;Date&gt;
+ {
+    "UnprocessedItems": {
+        "Forum": [
+            {
+                "PutRequest": {
+                    "Item": {
+                        "Name": {
+                            "S": "Amazon ElastiCache"
+                        },
+                        "Category": {
+                            "S": "Amazon Web Services"
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "ConsumedCapacity": [
+        {
+            "TableName": "Forum",
+            "CapacityUnits": 3
+        }
+    ]
+}
+        </pre></div></div></div></div><img src="images/expanderarrow.png" style="display:none;height:0;width:0"><div class="navfooter"><table class="navfooter" width="100%" summary="Navigation footer" cellspacing="0" cellpadding="2" style="margin-top:12px;"><tr><td valign="top" style="padding-top:8px;"><a class="awstoc" target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></td><td width="350px" align="right" valign="top" style="padding-top:8px;"><a class="awstoc" accesskey="p" style="margin-right:12px;" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-previous', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_BatchGetItem.html');" href="API_BatchGetItem.html">&laquo; Previous</a><a class="awstoc" accesskey="n" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-next', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_CreateTable.html');" href="API_CreateTable.html">Next &raquo;</a></td></tr><tr><td style="padding-top:8px;"><a class="awstoc" target="_top" href="http://aws.amazon.com/terms/">Terms of Use</a></td><td width="350px" align="right" valign="top" style="padding-top:8px;">Did this page help you?&nbsp;&nbsp;<a class="awstoc" target="_blank" href="feedbackyes.html?topic_id=API_BatchWriteItem">Yes</a>&nbsp;|&nbsp;<a class="awstoc" target="_blank" href="feedbackno.html?topic_id=API_BatchWriteItem">No</a>&nbsp;|&nbsp;&nbsp;<a class="awstoc" target="_blank" href="https://portal.aws.amazon.com/gp/aws/html-forms-controller/documentation/aws_doc_feedback_04?service_name=DynamoDB&amp;guide_name=API%20Reference&amp;api_version=2012-08-10&amp;file_name=API_BatchWriteItem">Tell us about it...</a></td></tr></table></div></div></div><noscript><div class="yui-b" style="padding: 20px; padding-top: 0;"><div class="yui-ge"><div class="yui-u first"><div id="error_messages"><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" style="float: left;" alt="Warning"><div style="float:left; margin-left: 1em;"><strong>Javascript is disabled or is unavailable in your browser.</strong><br>
+										To use the AWS Documentation, Javascript must be enabled.  Please refer to your 
+										browser's Help pages for instructions.
+									</div><div style="clear: both;"></div></div></div></div></div></noscript><!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://d36cz9buwru1tt.cloudfront.net/js/sitecatalyst/s_code.min.js"></script><script language="JavaScript" type="text/javascript"><!--
+
+            // Documentation Service Name
+            s.prop66='Amazon DynamoDB';
+            s.eVar66='D=c66';
+  
+            // Documentation Guide Name                                                                 
+            s.prop65='API Reference';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript"><!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="http://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt=""></noscript><!--/DO NOT REMOVE/--><!-- End SiteCatalyst code version: H.25.2. --></body></html>

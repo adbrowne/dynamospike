@@ -1,0 +1,375 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <meta http-equiv="X-UA-Compatible" content="IE=8"><title>BatchGetItem - Amazon DynamoDB</title><link rel="home" href="#top" title="Amazon DynamoDB"><link rel="up" href="API_Operations.html" title="Actions"><link rel="prev" href="API_Operations.html" title="Actions"><link rel="next" href="API_BatchWriteItem.html" title="BatchWriteItem"><meta http-equiv="X-UA-Compatible" content="IE=8"><meta name="description" content="The BatchGetItem operation returns the attributes of one or more items from one or more tables. You identify requested items by primary key."><meta name="keywords" content="API,BatchGetItem,requests,RequestItems.entry.N.value.AttributesToGet.member.N,parameters,value.AttributesToGet.member.N,"><link rel="icon" type="image/ico" href="//d36cz9buwru1tt.cloudfront.net/favicon.ico"><link rel="shortcut icon" type="image/ico" href="//d36cz9buwru1tt.cloudfront.net/favicon.ico"><link rel="canonical" href="http://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchGetItem.html"><link rel="stylesheet" type="text/css" href="aws-docs2.css"><script type="text/javascript" src="https://d36cz9buwru1tt.cloudfront.net/amznUrchin.js"></script><script src="all_1.js" type="text/javascript"></script><script src="awstoc.js" type="text/javascript"></script></head><body id="top" class="yui-skin-sam noJS"><div id="divHeader"><form method="get" onsubmit="return searchFormSubmit(this);" action="/search/doc-search.html"><div id="ad"><a id="adl" target="_top" href="http://aws.amazon.com/documentation"><img id="adi" alt="Amazon Web Services" src="images/documentation_logo200x29.png"></a></div><div id="txt"><div id="srv">Amazon DynamoDB</div><div id="gd">API Reference (API Version 2012-08-10)</div></div><div id="sfrm"><span id="lbl"><label>Search: </label></span><select id="sel" name="searchPath"><option value="all">Entire Site</option><option value="AWSMarketplace">AMIs from AWS Marketplace</option><option value="amis">AMIs from All Sources</option><option value="articles">Articles &amp; Tutorials</option><option value="products_and_info">AWS Product Information</option><option value="case_studies">Case Studies</option><option value="customerapps">Customer Apps</option><option value="documentation">Documentation</option><option value="documentation-product">Documentation - This Product</option><option value="documentation-guide" selected>Documentation - This Guide</option><option value="datasets">Public Data Sets</option><option value="releasenotes">Release Notes</option><option value="solution_providers">Partners</option><option value="code">Sample Code &amp; Libraries</option></select><input id="sq" name="searchQuery" type="text"><input id="sb" src="images/search-button.png" alt="Go" type="image"></div><input type="hidden" name="this_doc_product" id="this_doc_product" value="Amazon DynamoDB"><input type="hidden" name="this_doc_guide" id="this_doc_guide" value="API Reference"><input type="hidden" name="doc_locale" value="en_us"></form></div><script type="text/javascript"><!--
+						var thispage = "API_BatchGetItem.html";
+						var tocroot = location.protocol + '//' + location.hostname + location.pathname;
+						--></script><div id="divLeft"><div id="divTOC"><ul class="awstoc"><li class="awstoc leaf"><a class="awstoc" href="Welcome.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-Welcome.html');">Welcome</a></li><li class="awstoc opened"><a class="awstoc" href="API_Operations.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Operations.html');">Actions</a><ul class="awstoc"><li class="awstoc leaf"><a class="awstoc selected" href="API_BatchGetItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchGetItem.html');">BatchGetItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_BatchWriteItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchWriteItem.html');">BatchWriteItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_CreateTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_CreateTable.html');">CreateTable</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteItem.html');">DeleteItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteTable.html');">DeleteTable</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DescribeTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DescribeTable.html');">DescribeTable</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GetItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GetItem.html');">GetItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ListTables.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ListTables.html');">ListTables</a></li><li class="awstoc leaf"><a class="awstoc" href="API_PutItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_PutItem.html');">PutItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Query.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Query.html');">Query</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Scan.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Scan.html');">Scan</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateItem.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateItem.html');">UpdateItem</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateTable.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateTable.html');">UpdateTable</a></li></ul></li><li class="awstoc closed"><a class="awstoc" href="API_Types.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Types.html');">Data Types</a><ul class="awstoc"><li class="awstoc leaf"><a class="awstoc" href="API_AttributeDefinition.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_AttributeDefinition.html');">AttributeDefinition</a></li><li class="awstoc leaf"><a class="awstoc" href="API_AttributeValue.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_AttributeValue.html');">AttributeValue</a></li><li class="awstoc leaf"><a class="awstoc" href="API_AttributeValueUpdate.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_AttributeValueUpdate.html');">AttributeValueUpdate</a></li><li class="awstoc leaf"><a class="awstoc" href="API_BatchGetItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchGetItemResult.html');">BatchGetItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_BatchWriteItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_BatchWriteItemResult.html');">BatchWriteItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Capacity.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Capacity.html');">Capacity</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Condition.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Condition.html');">Condition</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ConsumedCapacity.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ConsumedCapacity.html');">ConsumedCapacity</a></li><li class="awstoc leaf"><a class="awstoc" href="API_CreateTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_CreateTableResult.html');">CreateTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteItemResult.html');">DeleteItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteRequest.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteRequest.html');">DeleteRequest</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DeleteTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DeleteTableResult.html');">DeleteTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_DescribeTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_DescribeTableResult.html');">DescribeTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ExpectedAttributeValue.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ExpectedAttributeValue.html');">ExpectedAttributeValue</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GetItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GetItemResult.html');">GetItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GlobalSecondaryIndex.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GlobalSecondaryIndex.html');">GlobalSecondaryIndex</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GlobalSecondaryIndexDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GlobalSecondaryIndexDescription.html');">GlobalSecondaryIndexDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_GlobalSecondaryIndexUpdate.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_GlobalSecondaryIndexUpdate.html');">GlobalSecondaryIndexUpdate</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ItemCollectionMetrics.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ItemCollectionMetrics.html');">ItemCollectionMetrics</a></li><li class="awstoc leaf"><a class="awstoc" href="API_KeySchemaElement.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_KeySchemaElement.html');">KeySchemaElement</a></li><li class="awstoc leaf"><a class="awstoc" href="API_KeysAndAttributes.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_KeysAndAttributes.html');">KeysAndAttributes</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ListTablesResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ListTablesResult.html');">ListTablesResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_LocalSecondaryIndex.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_LocalSecondaryIndex.html');">LocalSecondaryIndex</a></li><li class="awstoc leaf"><a class="awstoc" href="API_LocalSecondaryIndexDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_LocalSecondaryIndexDescription.html');">LocalSecondaryIndexDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_Projection.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_Projection.html');">Projection</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ProvisionedThroughput.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ProvisionedThroughput.html');">ProvisionedThroughput</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ProvisionedThroughputDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ProvisionedThroughputDescription.html');">ProvisionedThroughputDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_PutItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_PutItemResult.html');">PutItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_PutRequest.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_PutRequest.html');">PutRequest</a></li><li class="awstoc leaf"><a class="awstoc" href="API_QueryResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_QueryResult.html');">QueryResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_ScanResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_ScanResult.html');">ScanResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_TableDescription.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_TableDescription.html');">TableDescription</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateGlobalSecondaryIndexAction.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateGlobalSecondaryIndexAction.html');">UpdateGlobalSecondaryIndexAction</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateItemResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateItemResult.html');">UpdateItemResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_UpdateTableResult.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_UpdateTableResult.html');">UpdateTableResult</a></li><li class="awstoc leaf"><a class="awstoc" href="API_WriteRequest.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-API_WriteRequest.html');">WriteRequest</a></li></ul></li><li class="awstoc leaf"><a class="awstoc" href="CommonErrors.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-toc', 'aws-docs-click', tocroot + '-CommonErrors.html');">Common Errors</a></li></ul></div></div><div id="divRight"><div id="divContent"><table width="100%" summary="Navigation header" cellspacing="0" cellpadding="2" style="margin-top:12px;"><tr><td valign="top"><div class="navheader"><div class="breadcrumb"><a href="http://aws.amazon.com/documentation" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', 'http://aws.amazon.com/documentation');">AWS Documentation</a> &raquo; <a href="http://aws.amazon.com/documentation/dynamodb/" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', 'http://aws.amazon.com/documentation/dynamodb/');">Amazon DynamoDB</a> &raquo; <a href="http://docs.aws.amazon.com/amazondynamodb/latest/APIReference" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', 'http://docs.aws.amazon.com/amazondynamodb/latest/APIReference');">API Reference</a> &raquo; <a href="API_Operations.html" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-breadcrumbs', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_Operations.html');">Actions</a> &raquo; <span class="breadcrumb">BatchGetItem</span></div></div></td><td width="350px" align="right" valign="top"><a class="awstoc" accesskey="p" style="margin-right:12px;" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-previous', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_Operations.html');" href="API_Operations.html">&laquo; Previous</a><a class="awstoc" accesskey="n" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-next', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_BatchWriteItem.html');" href="API_BatchWriteItem.html">Next &raquo;</a></td></tr><tr><td><a href="http://awsdocs.s3.amazonaws.com/dynamodb/latest/dynamodb-api.pdf" style="padding-right: 8px;" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-pdf-link', 'aws-docs-click', 'http://awsdocs.s3.amazonaws.com/dynamodb/latest/dynamodb-api.pdf');"><img src="images/pdf_button.png" alt="View the PDF for this guide." title="View the PDF for this guide."></a><a target="_blank" style="padding-right: 8px;" href="http://forums.aws.amazon.com/forum.jspa?forumID=131" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-forums-link', 'aws-docs-click', 'http://forums.aws.amazon.com/forum.jspa?forumID=131');"><img src="images/forum_button.png" alt="Go to the AWS Discussion Forum for this product." title="Go to the AWS Discussion Forum for this product."></a></td><td width="350px" align="right" valign="top">Did this page help you?&nbsp;&nbsp;<a class="awstoc" target="_blank" href="feedbackyes.html?topic_id=API_BatchGetItem">Yes</a>&nbsp;|&nbsp;<a class="awstoc" target="_blank" href="feedbackno.html?topic_id=API_BatchGetItem">No</a>&nbsp;|&nbsp;&nbsp;<a class="awstoc" target="_blank" href="https://portal.aws.amazon.com/gp/aws/html-forms-controller/documentation/aws_doc_feedback_04?service_name=DynamoDB&amp;guide_name=API%20Reference&amp;api_version=2012-08-10&amp;file_name=API_BatchGetItem">Tell us about it...</a></td></tr></table><div class="section"><div class="titlepage"><div><div><h1 class="topictitle">BatchGetItem</h1></div></div></div><a class="indexterm" name="d0e512"></a><a class="indexterm" name="d0e517"></a><a class="indexterm" name="d0e522"></a><p>The 
+      <span class="emphasis"><em>BatchGetItem</em></span> operation returns the attributes of one or more items from one or more tables. You identify requested items by primary key.</p><p>A single operation can retrieve up to 1 MB of data, which can contain as many as 100 items.
+        <span class="emphasis"><em>BatchGetItem</em></span> will return a partial result if the response size limit is exceeded, the
+      table's provisioned throughput is exceeded, or an internal processing failure occurs. If a
+      partial result is returned, the operation returns a value for <span class="emphasis"><em>UnprocessedKeys</em></span>. You can
+      use this value to retry the operation starting with the next item to get.</p><p>For example, if you ask to retrieve 100 items, but each individual item is 50 KB in size, the
+      system returns 20 items (1 MB) and an appropriate <span class="emphasis"><em>UnprocessedKeys</em></span> value so you can get the
+      next page of results. If desired, your application can include its own logic to assemble the
+      pages of results into one dataset.</p><p>If no items can be processed because of insufficient provisioned throughput on each of the
+      tables involved in the request, <span class="emphasis"><em>BatchGetItem</em></span> throws <span class="emphasis"><em>ProvisionedThroughputExceededException</em></span>. </p><p>By default, <span class="emphasis"><em>BatchGetItem</em></span> performs eventually consistent reads on every table in the
+        request. If you want strongly consistent reads instead, you can set <span class="emphasis"><em>ConsistentRead</em></span> to <code class="code">true</code> for any or all tables.</p><p>In order to minimize response latency, <span class="emphasis"><em>BatchGetItem</em></span> retrieves items in parallel.</p><p>When designing your application, keep in mind that DynamoDB does not return attributes in any particular order. To help parse the response by item, include the primary key values for the items in your request in the
+          <span class="emphasis"><em>AttributesToGet</em></span> parameter.</p><p>If a requested item does not exist, it is not returned in the result. Requests for nonexistent items consume the minimum read capacity units according to the
+        type of read. For more information, see <a class="ulink" href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/WorkingWithTables.html#CapacityUnitCalculations" target="_blank">Capacity Units Calculations</a> in the Amazon DynamoDB Developer Guide.</p><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchGetItem_RequestSyntax">Request Syntax</h2></div></div></div><pre class="programlisting">
+{
+    "<a class="link" href="API_BatchGetItem.html#DDB-BatchGetItem-request-RequestItems">RequestItems</a>": 
+        {
+            "<em class="replaceable"><code>string</code></em>" :
+                {
+                    "AttributesToGet": [
+                        "<em class="replaceable"><code>string</code></em>"
+                    ],
+                    "ConsistentRead": "<em class="replaceable"><code>boolean</code></em>",
+                    "Keys": [
+                        
+                            {
+                                "<em class="replaceable"><code>string</code></em>" :
+                                    {
+                                        "B": "<em class="replaceable"><code>blob</code></em>",
+                                        "BS": [
+                                            "<em class="replaceable"><code>blob</code></em>"
+                                        ],
+                                        "N": "<em class="replaceable"><code>string</code></em>",
+                                        "NS": [
+                                            "<em class="replaceable"><code>string</code></em>"
+                                        ],
+                                        "S": "<em class="replaceable"><code>string</code></em>",
+                                        "SS": [
+                                            "<em class="replaceable"><code>string</code></em>"
+                                        ]
+                                    }
+                            }
+                    ]
+                }
+        },
+    "<a class="link" href="API_BatchGetItem.html#DDB-BatchGetItem-request-ReturnConsumedCapacity">ReturnConsumedCapacity</a>": "<em class="replaceable"><code>string</code></em>"
+}
+			</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchGetItem_RequestParameters">Request Parameters</h2></div></div></div><p>The request accepts the following data in JSON format.</p><div class="aws-note"><p class="aws-note">Note</p><p>In the following list, the required parameters are described first.</p></div><div class="variablelist"><dl><dt><a name="DDB-BatchGetItem-request-RequestItems"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchGetItem.html#API_BatchGetItem_RequestSyntax" title="Request Syntax">RequestItems</a></strong></span>
+         </span></dt><dd><p>A map of one or more table names and, for each table, the corresponding primary keys for the items to retrieve.
+      Each table name can be invoked only once.</p><p>Each element in the map consists of the following:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <span class="emphasis"><em>Keys</em></span> - An array of primary key attribute values that define specific items in the table.</p></li><li class="listitem"><p>
+                           <span class="emphasis"><em>AttributesToGet</em></span> - One or more attributes to be retrieved from the table. By
+          default, all attributes are returned. If a specified attribute is not found, it does not
+          appear in the result.</p></li><li class="listitem"><p>
+                           <span class="emphasis"><em>ConsistentRead</em></span> - If <code class="code">true</code>, a strongly consistent read is used; if
+            <code class="code">false</code> (the default), an eventually consistent read is used.</p></li></ul></div><p>
+            Type:
+              String
+					to
+					<a class="xref" href="API_KeysAndAttributes.html" title="KeysAndAttributes">KeysAndAttributes</a>
+						object
+					
+					map
+				</p><p>
+                            Length constraints:
+                            
+                                Minimum length of
+                                1.
+                            
+                                Maximum length of
+                                100.
+                            </p><p>
+                        Required: Yes
+                    </p></dd><dt><a name="DDB-BatchGetItem-request-ReturnConsumedCapacity"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchGetItem.html#API_BatchGetItem_RequestSyntax" title="Request Syntax">ReturnConsumedCapacity</a></strong></span>
+         </span></dt><dd><p>If set to <code class="code">TOTAL</code>, the response includes <span class="emphasis"><em>ConsumedCapacity</em></span> data for tables and indexes. If set to <code class="code">INDEXES</code>, the response includes <span class="emphasis"><em>ConsumedCapacity</em></span> for indexes. If set to <code class="code">NONE</code> (the default), <span class="emphasis"><em>ConsumedCapacity</em></span> is not included in the response.</p><p>
+            Type:
+              String</p><p>
+                    Valid Values: <code class="code">INDEXES | TOTAL | NONE</code>
+            </p><p>
+                        Required: No
+                    </p></dd></dl></div><a class="indexterm" name="d0e712"></a><a class="indexterm" name="d0e715"></a><a class="indexterm" name="d0e720"></a><a class="indexterm" name="d0e723"></a><a class="indexterm" name="d0e728"></a><a class="indexterm" name="d0e731"></a><a class="indexterm" name="d0e736"></a><a class="indexterm" name="d0e739"></a><a class="indexterm" name="d0e744"></a><a class="indexterm" name="d0e747"></a><a class="indexterm" name="d0e752"></a><a class="indexterm" name="d0e755"></a><a class="indexterm" name="d0e760"></a><a class="indexterm" name="d0e763"></a><a class="indexterm" name="d0e768"></a><a class="indexterm" name="d0e771"></a><a class="indexterm" name="d0e776"></a><a class="indexterm" name="d0e779"></a><a class="indexterm" name="d0e784"></a><a class="indexterm" name="d0e787"></a><a class="indexterm" name="d0e792"></a><a class="indexterm" name="d0e795"></a><a class="indexterm" name="d0e800"></a><a class="indexterm" name="d0e803"></a><a class="indexterm" name="d0e808"></a><a class="indexterm" name="d0e811"></a><a class="indexterm" name="d0e816"></a><a class="indexterm" name="d0e819"></a><a class="indexterm" name="d0e824"></a><a class="indexterm" name="d0e827"></a><a class="indexterm" name="d0e832"></a><a class="indexterm" name="d0e835"></a><a class="indexterm" name="d0e840"></a><a class="indexterm" name="d0e843"></a><a class="indexterm" name="d0e848"></a><a class="indexterm" name="d0e851"></a><a class="indexterm" name="d0e856"></a><a class="indexterm" name="d0e859"></a><a class="indexterm" name="d0e864"></a><a class="indexterm" name="d0e867"></a><a class="indexterm" name="d0e872"></a><a class="indexterm" name="d0e875"></a><a class="indexterm" name="d0e880"></a><a class="indexterm" name="d0e883"></a><a class="indexterm" name="d0e888"></a><a class="indexterm" name="d0e891"></a><a class="indexterm" name="d0e896"></a><a class="indexterm" name="d0e899"></a><a class="indexterm" name="d0e904"></a><a class="indexterm" name="d0e907"></a><a class="indexterm" name="d0e912"></a><a class="indexterm" name="d0e915"></a><a class="indexterm" name="d0e920"></a><a class="indexterm" name="d0e923"></a><a class="indexterm" name="d0e928"></a><a class="indexterm" name="d0e931"></a><a class="indexterm" name="d0e936"></a><a class="indexterm" name="d0e939"></a><a class="indexterm" name="d0e944"></a><a class="indexterm" name="d0e947"></a><a class="indexterm" name="d0e952"></a><a class="indexterm" name="d0e955"></a><a class="indexterm" name="d0e960"></a><a class="indexterm" name="d0e963"></a><a class="indexterm" name="d0e968"></a><a class="indexterm" name="d0e971"></a><a class="indexterm" name="d0e976"></a><a class="indexterm" name="d0e979"></a><a class="indexterm" name="d0e984"></a><a class="indexterm" name="d0e987"></a><a class="indexterm" name="d0e992"></a><a class="indexterm" name="d0e995"></a><a class="indexterm" name="d0e1000"></a><a class="indexterm" name="d0e1003"></a><a class="indexterm" name="d0e1008"></a><a class="indexterm" name="d0e1011"></a></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchGetItem_ResponseSyntax">Response Syntax</h2></div></div></div><pre class="programlisting">
+{
+    "<a class="link" href="API_BatchGetItem.html#DDB-BatchGetItem-response-ConsumedCapacity">ConsumedCapacity</a>": [
+        {
+            "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>",
+            "GlobalSecondaryIndexes": 
+                {
+                    "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                        {
+                            "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+                        }
+                },
+            "LocalSecondaryIndexes": 
+                {
+                    "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                        {
+                            "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+                        }
+                },
+            "Table": {
+                "CapacityUnits": "<span class="emphasis"><em><span class="bold"><strong>number</strong></span></em></span>"
+            },
+            "TableName": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+        }
+    ],
+    "<a class="link" href="API_BatchGetItem.html#DDB-BatchGetItem-response-Responses">Responses</a>": 
+        {
+            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                [
+                    
+                        {
+                            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                                {
+                                    "B": "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>",
+                                    "BS": [
+                                        "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>"
+                                    ],
+                                    "N": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                    "NS": [
+                                        "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                    ],
+                                    "S": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                    "SS": [
+                                        "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                    ]
+                                }
+                        }
+                ]
+        },
+    "<a class="link" href="API_BatchGetItem.html#DDB-BatchGetItem-response-UnprocessedKeys">UnprocessedKeys</a>": 
+        {
+            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                {
+                    "AttributesToGet": [
+                        "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                    ],
+                    "ConsistentRead": "<span class="emphasis"><em><span class="bold"><strong>boolean</strong></span></em></span>",
+                    "Keys": [
+                        
+                            {
+                                "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>" :
+                                    {
+                                        "B": "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>",
+                                        "BS": [
+                                            "<span class="emphasis"><em><span class="bold"><strong>blob</strong></span></em></span>"
+                                        ],
+                                        "N": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                        "NS": [
+                                            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                        ],
+                                        "S": "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>",
+                                        "SS": [
+                                            "<span class="emphasis"><em><span class="bold"><strong>string</strong></span></em></span>"
+                                        ]
+                                    }
+                            }
+                    ]
+                }
+        }
+}
+			</pre></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchGetItem_ResponseElements">Response Elements</h2></div></div></div><p>
+				The following data is returned in JSON format by the service.
+			</p><div class="variablelist"><dl><dt><a name="DDB-BatchGetItem-response-ConsumedCapacity"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchGetItem.html#API_BatchGetItem_ResponseSyntax" title="Response Syntax">ConsumedCapacity</a></strong></span>
+         </span></dt><dd><p>The write capacity units consumed by the operation.</p><p>Each element consists of:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <span class="emphasis"><em>TableName</em></span> - The table that consumed the provisioned throughput.</p></li><li class="listitem"><p>
+                           <span class="emphasis"><em>CapacityUnits</em></span> - The total number of capacity units consumed.</p></li></ul></div><p>
+            Type:
+              
+					array of
+					<a class="xref" href="API_ConsumedCapacity.html" title="ConsumedCapacity">ConsumedCapacity</a>
+						objects
+					</p></dd><dt><a name="DDB-BatchGetItem-response-Responses"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchGetItem.html#API_BatchGetItem_ResponseSyntax" title="Response Syntax">Responses</a></strong></span>
+         </span></dt><dd><p>A map of table name to a list of items.  Each object in <span class="emphasis"><em>Responses</em></span> consists of a table name, along with a map of attribute data consisting of the data type and attribute value.</p><p>
+            Type:
+              String
+					to
+					
+					map
+				</p></dd><dt><a name="DDB-BatchGetItem-response-UnprocessedKeys"></a><span class="term">
+            <span class="bold"><strong><a class="link" href="API_BatchGetItem.html#API_BatchGetItem_ResponseSyntax" title="Response Syntax">UnprocessedKeys</a></strong></span>
+         </span></dt><dd><p>A map of tables and their respective keys that were not processed with the current response.
+      The <span class="emphasis"><em>UnprocessedKeys</em></span> value is in the same form as <span class="emphasis"><em>RequestItems</em></span>, so the value can
+      be provided directly to a subsequent <span class="emphasis"><em>BatchGetItem</em></span> operation. For more information, see
+        <span class="emphasis"><em>RequestItems</em></span> in the Request Parameters section.</p><p>Each element consists of:</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+                           <span class="emphasis"><em>Keys</em></span> - An array of primary key attribute values that define specific items in the table.</p></li><li class="listitem"><p>
+                           <span class="emphasis"><em>AttributesToGet</em></span> - One or more attributes to be retrieved from the table or index. By
+            default, all attributes are returned. If a specified attribute is not found, it does not
+            appear in the result.</p></li><li class="listitem"><p>
+                           <span class="emphasis"><em>ConsistentRead</em></span> - The consistency of a read operation. If set to
+            <code class="code">true</code>, then a strongly consistent read is used; otherwise, an eventually
+          consistent read is used.</p></li></ul></div><p>If there are no unprocessed keys remaining, the response contains an empty <span class="emphasis"><em>UnprocessedKeys</em></span> map.</p><p>
+            Type:
+              String
+					to
+					<a class="xref" href="API_KeysAndAttributes.html" title="KeysAndAttributes">KeysAndAttributes</a>
+						object
+					
+					map
+				</p><p>
+                            Length constraints:
+                            
+                                Minimum length of
+                                1.
+                            
+                                Maximum length of
+                                100.
+                            </p></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchGetItem_Errors">Errors</h2></div></div></div><a class="indexterm" name="d0e1240"></a><a class="indexterm" name="d0e1243"></a><a class="indexterm" name="d0e1248"></a><a class="indexterm" name="d0e1251"></a><a class="indexterm" name="d0e1256"></a><a class="indexterm" name="d0e1259"></a><p>
+					For information about the errors that are common to all actions, see
+					<a class="xref" href="CommonErrors.html" title="Common Errors">Common Errors</a>.
+				</p><div class="variablelist"><dl><dt><span class="term">
+               <span class="bold"><strong>InternalServerError</strong></span>
+            </span></dt><dd><p>An error occurred on the server side.</p><p>
+									HTTP Status Code:
+									500</p></dd><dt><span class="term">
+               <span class="bold"><strong>ProvisionedThroughputExceededException</strong></span>
+            </span></dt><dd><p>The request rate is too high, or the request is too large, for the available throughput to
+      accommodate. The AWS SDKs automatically retry requests that receive this exception;
+      therefore, your request will eventually succeed, unless the request is too large or your retry
+      queue is too large to finish. Reduce the frequency of requests by using the strategies listed in
+        <a class="ulink" href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html#APIRetries" target="_blank">Error Retries and Exponential Backoff</a> in the Amazon DynamoDB Developer Guide.</p><p>
+									HTTP Status Code:
+									400</p></dd><dt><span class="term">
+               <span class="bold"><strong>ResourceNotFoundException</strong></span>
+            </span></dt><dd><p>The operation tried to access a nonexistent table or index. The resource may not be specified correctly, or its status may not be <code class="code">ACTIVE</code>.</p><p>
+									HTTP Status Code:
+									400</p></dd></dl></div></div><div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both" id="API_BatchGetItem_Examples">Examples</h2></div></div></div><div class="section"><div class="titlepage"><div><div><h3 class="title" id="API_BatchGetItem_Example_Retrieve Items From Multiple Tables">Retrieve Items From Multiple Tables</h3></div></div></div>The following sample requests attributes from two different
+          tables.<div class="section"><div class="titlepage"><div><div><h4 class="title" id="API_BatchGetItem_Example_Retrieve Items From Multiple Tables_Request">Sample Request</h4></div></div></div><pre class="programlisting">
+POST / HTTP/1.1
+Host: dynamodb.&lt;region&gt;.&lt;domain&gt;;
+X-Amz-Date: &lt;Date&gt;
+Authorization: AWS4-HMAC-SHA256 Credential=&lt;Credential&gt;, SignedHeaders=content-length;content-type;host;user-agent;x-amz-content-sha256;x-amz-date;x-amz-target, Signature=&lt;Signature&gt;
+User-Agent: &lt;UserAgentString&gt;
+x-amz-content-sha256: &lt;PayloadHash&gt;
+Content-Type: application/x-amz-json-1.0
+Content-Length: &lt;PayloadSizeBytes&gt;     
+Connection: Keep-Alive
+X-Amz-Target: DynamoDB_20120810.BatchGetItem 
+
+{
+    "RequestItems": {
+        "Forum": {
+            "Keys": [
+                {
+                    "Name":{"S":"Amazon DynamoDB"}
+                },
+                {
+                    "Name":{"S":"Amazon RDS"}
+                },
+                {
+                    "Name":{"S":"Amazon Redshift"}
+                }
+            ],
+            "AttributesToGet": [
+                "Name","Threads","Messages","Views"
+            ]
+        },
+        "Thread": {
+            "Keys": [
+                {
+                    "ForumName":{"S":"Amazon DynamoDB"},
+                    "Subject":{"S":"Concurrent reads"}
+                }
+            ],
+            "AttributesToGet": [
+                "Tags","Message"
+            ]
+        }
+    },
+    "ReturnConsumedCapacity": "TOTAL"
+}
+        </pre></div><div class="section"><div class="titlepage"><div><div><h4 class="title" id="API_BatchGetItem_Example_Retrieve Items From Multiple Tables_Response">Sample Response</h4></div></div></div><pre class="programlisting">
+HTTP/1.1 200 OK
+x-amzn-RequestId: &lt;RequestId&gt; 
+x-amz-crc32: &lt;Checksum&gt;
+Content-Type: application/x-amz-json-1.0
+Content-Length: &lt;PayloadSizeBytes&gt;
+Date: &lt;Date&gt;
+
+{
+    "Responses": {
+        "Forum": [
+            {
+                "Name":{
+                    "S":"Amazon DynamoDB"
+                },
+                "Threads":{
+                    "N":"5"
+                },
+                "Messages":{
+                    "N":"19"
+                },
+                "Views":{
+                    "N":"35"
+                }
+            },
+            {
+                "Name":{
+                    "S":"Amazon RDS"
+                },
+                "Threads":{
+                    "N":"8"
+                },
+                "Messages":{
+                    "N":"32"
+                },
+                "Views":{
+                    "N":"38"
+                }
+            },
+            {
+                "Name":{
+                    "S":"Amazon Redshift"
+                },
+                "Threads":{
+                    "N":"12"
+                },
+                "Messages":{
+                    "N":"55"
+                },
+                "Views":{
+                    "N":"47"
+                }
+            }
+        ]
+        "Thread": [
+            {
+                "Tags":{
+                    "SS":["Reads","MultipleUsers"]
+                },
+                "Message":{
+                    "S":"How many users can read a single data item at a time? Are there any limits?"
+                }
+            }
+        ]
+    },
+    "UnprocessedKeys": {
+    },
+    "ConsumedCapacity": [
+        {
+            "TableName": "Forum",
+            "CapacityUnits": 3
+        },
+        {
+            "TableName": "Thread",
+            "CapacityUnits": 1
+        }
+    ]
+}
+        </pre></div></div></div></div><img src="images/expanderarrow.png" style="display:none;height:0;width:0"><div class="navfooter"><table class="navfooter" width="100%" summary="Navigation footer" cellspacing="0" cellpadding="2" style="margin-top:12px;"><tr><td valign="top" style="padding-top:8px;"><a class="awstoc" target="_top" href="/general/latest/gr/docconventions.html">Document Conventions</a></td><td width="350px" align="right" valign="top" style="padding-top:8px;"><a class="awstoc" accesskey="p" style="margin-right:12px;" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-previous', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_Operations.html');" href="API_Operations.html">&laquo; Previous</a><a class="awstoc" accesskey="n" onclick="location.hostname.substring(0,5)!=='docs.' || __utmTrackEvent('aws-docs-next', 'aws-docs-click', location.protocol + '//' + location.hostname + '/API_BatchWriteItem.html');" href="API_BatchWriteItem.html">Next &raquo;</a></td></tr><tr><td style="padding-top:8px;"><a class="awstoc" target="_top" href="http://aws.amazon.com/terms/">Terms of Use</a></td><td width="350px" align="right" valign="top" style="padding-top:8px;">Did this page help you?&nbsp;&nbsp;<a class="awstoc" target="_blank" href="feedbackyes.html?topic_id=API_BatchGetItem">Yes</a>&nbsp;|&nbsp;<a class="awstoc" target="_blank" href="feedbackno.html?topic_id=API_BatchGetItem">No</a>&nbsp;|&nbsp;&nbsp;<a class="awstoc" target="_blank" href="https://portal.aws.amazon.com/gp/aws/html-forms-controller/documentation/aws_doc_feedback_04?service_name=DynamoDB&amp;guide_name=API%20Reference&amp;api_version=2012-08-10&amp;file_name=API_BatchGetItem">Tell us about it...</a></td></tr></table></div></div></div><noscript><div class="yui-b" style="padding: 20px; padding-top: 0;"><div class="yui-ge"><div class="yui-u first"><div id="error_messages"><img src="https://d1ge0kk1l5kms0.cloudfront.net/images/G/01/webservices/console/warning.png" style="float: left;" alt="Warning"><div style="float:left; margin-left: 1em;"><strong>Javascript is disabled or is unavailable in your browser.</strong><br>
+										To use the AWS Documentation, Javascript must be enabled.  Please refer to your 
+										browser's Help pages for instructions.
+									</div><div style="clear: both;"></div></div></div></div></div></noscript><!-- SiteCatalyst code version: H.25.2.
+            Copyright 1996-2012 Adobe, Inc. All Rights Reserved
+            More info available at http://www.omniture.com --><script language="JavaScript" type="text/javascript" src="https://d36cz9buwru1tt.cloudfront.net/js/sitecatalyst/s_code.min.js"></script><script language="JavaScript" type="text/javascript"><!--
+
+            // Documentation Service Name
+            s.prop66='Amazon DynamoDB';
+            s.eVar66='D=c66';
+  
+            // Documentation Guide Name                                                                 
+            s.prop65='API Reference';
+            s.eVar65='D=c65';
+
+            var s_code=s.t();if(s_code)document.write(s_code)//--></script><script language="JavaScript" type="text/javascript"><!--
+                if(navigator.appVersion.indexOf('MSIE')>=0)document.write(unescape('%3C')+'\!-'+'-')
+                //--></script><noscript><img src="http://amazonwebservices.d2.sc.omtrdc.net/b/ss/awsamazondev/1/H.25.2--NS/0" height="1" width="1" border="0" alt=""></noscript><!--/DO NOT REMOVE/--><!-- End SiteCatalyst code version: H.25.2. --></body></html>
