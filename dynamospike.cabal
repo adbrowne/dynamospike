@@ -81,5 +81,12 @@ executable program1
                        text >= 0.11,
                        aeson >= 0.6
   main-is:             HttpConduitSample.hs
-    
+executable generateApi
+  build-depends:       base >=4.5,
+                       bytestring >= 0.9,
+                       HandsomeSoup >= 0.3.2,
+                       directory >= 1.0,
+                       MissingH >= 1.2,
+                       hxt >= 0.9
+  main-is:             GenerateApi.hs
   
